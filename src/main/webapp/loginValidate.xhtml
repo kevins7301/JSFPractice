@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>第一個个JSF程序</title>
+	<!-- <h:commandLink rel="stylesheet" type="text/css" href="./WebContent/resources/styles.css" /> -->
+</h:head>
+<h:body>
+	<h:form>
+		<h3>請輸入您的帳號</h3>
+		<h:outputText value="#{userBean.errMessage}" />
+			
+				帳號:
+				<h:inputText id="username" value="#{userBean.name}" required="true"
+			validator="#{userBean.validateModelNo}"
+			requiredMessage="請輸入帳號(帳號長度為3~10碼)" styleClass="text-input">
+			<f:validateLength minimum="1" maximum="10" />
+		</h:inputText>
+		
+				密碼:
+				<h:inputSecret id="password" value="#{userBean.password}"
+			required="true" validator="#{userBean.validateModelNo}"
+			requiredMessage="請輸入密碼(帳號長度為3~10碼)">
+			<f:validateLength minimum="1" maximum="10" />
+		</h:inputSecret>
+
+		<h:messages layout="table" style="color:red" />
+		&nbsp;
+		<h:commandButton value="Submit" action="#{userBean.verify}"
+			actionListener="#{userBean.verifyListener}" />
+	</h:form>
+</h:body>
+</html>

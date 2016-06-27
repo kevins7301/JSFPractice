@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+
+</h:head>
+<h:body>
+<h:outputStylesheet library="css" name="style.css"  />
+
+	<h:form>
+	    <h3 style="margin-top:0">JSF-Practice</h3>
+	    <p:tabView >
+	        <p:tab title="sample">
+	        	
+	        	<h:panelGrid columns="1" cellpadding="30">
+	                <ui:include src="personList.xhtml"/>
+                 </h:panelGrid>
+                 
+	        </p:tab>
+	        
+	        <p:tab title="radioBtn">
+				<h:panelGrid columns="1" cellpadding="10">
+					<ui:include src="radioComponentUse.xhtml"/>
+				</h:panelGrid>
+	        </p:tab>
+	        
+	        <p:tab title="ajaxdelay">
+				<h:panelGrid columns="1" cellpadding="10">
+					<ui:include src="ajaxdelay.xhtml"/>
+				</h:panelGrid>
+	        </p:tab>
+	        
+      	    <p:tab title="accordionPanel">
+				<h:panelGrid columns="1" cellpadding="10">
+					<ui:include src="accordionPanel.xhtml"/>
+				</h:panelGrid>
+	        </p:tab>
+	        
+			<p:tab title="Validate">
+				<h:panelGrid columns="1" cellpadding="10">
+					<ui:include src="loginValidate.xhtml"/>
+				</h:panelGrid>
+	        </p:tab>
+	        
+			<p:tab title="ComboBox">
+				<h:panelGrid columns="1" cellpadding="10">
+					<ui:include src="comboBox.xhtml"/>
+				</h:panelGrid>
+	        </p:tab>
+	        
+	    </p:tabView>
+	</h:form> 
+	
+
+</h:body>
+</html>

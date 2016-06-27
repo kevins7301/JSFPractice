@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>ComboBox</title>
+</h:head>
+
+<h:body>
+	<h2>selectOneMenu</h2>
+	<hr />
+	<h:form>
+		<h:panelGroup>
+			<h3>ComboBox</h3>
+			<h:selectOneMenu value="#{comboBoxControllerOne.data}">
+				<f:selectItem itemValue="1" itemLabel="Item one" />
+				<f:selectItem itemValue="2" itemLabel="Item two" />
+				<f:selectItem itemValue="3" itemLabel="Item three" />
+				<f:selectItem itemValue="4" itemLabel="Item four" />
+				<f:selectItem itemValue="5" itemLabel="Item five" />
+			</h:selectOneMenu>
+			<p:spacer></p:spacer>
+			<p:spacer></p:spacer>
+			<p:spacer></p:spacer>
+			<p:spacer></p:spacer>
+
+			<h:commandButton value="選擇" action="result" />
+		</h:panelGroup>
+
+		<h:panelGroup>
+			<h3>ComboBox</h3>
+			<h:selectOneMenu value="#{comboBoxControllerTwo.data}"
+				onchange="submit()"
+				valueChangeListener="#{comboBoxControllerTwo.validarSelect}">
+				<f:selectItem itemValue="1" itemLabel="Item one" />
+				<f:selectItem itemValue="2" itemLabel="Item two" />
+				<f:selectItem itemValue="3" itemLabel="Item three" />
+				<f:selectItem itemValue="4" itemLabel="Item four" />
+				<f:selectItem itemValue="5" itemLabel="Item five" />
+			</h:selectOneMenu>
+			<br>Result select #{comboBoxControllerTwo.data}</br>
+		</h:panelGroup>
+		<p:spacer></p:spacer>
+		<p:spacer></p:spacer>
+		<p:spacer></p:spacer>
+		<p:spacer></p:spacer>
+		<h:panelGroup>
+			<h3>ComboBox</h3>
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel for="country" value="Country: " />
+				<p:selectOneMenu id="country"
+					value="#{comboBoxControlhmjjlerThree.country}" 
+					onchange="submit()" style="width:250px">
+					<p:ajax listener="#{comboBoxControllerThree.onCountryChange}" update="city" render="@form" />
+					<f:selectItem itemLabel="Select Country" itemValue=""
+						noSelectionOption="true" />
+					<f:selectItems value="#{comboBoxControllerThree.countries}" />
+				</p:selectOneMenu>
+			</h:panelGrid>
+			
+			<h:panelGroup
+				rendered="#{comboBoxControllerThree.country == 'Germany'}">
+				<p:outputLabel for="city" value="City: " />
+				<p:selectOneMenu id="city" value="#{comboBoxControllerThree.city}"
+					style="width:250px">
+					<f:selectItem itemLabel="Select City" itemValue=""
+						noSelectionOption="true" />
+					<f:selectItems value="#{comboBoxControllerThree.cities}" />
+				</p:selectOneMenu>
+			</h:panelGroup>
+			<br>Result select #{comboBoxControllerThree.country}</br>
+			<p:separator />
+		</h:panelGroup>
+	</h:form>
+</h:body>
+</html>
+

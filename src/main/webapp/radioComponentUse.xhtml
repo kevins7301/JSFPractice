@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jl="http://xmlns.jcp.org/jsf/composite/jsflive"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+</h:head>
+<h:body>
+
+    <c:forEach items="#{radioComponent.radioList}" var="data">
+		<span id="#{data.value}span"> <!-- $("#文件核發span") hide or show -->
+			<input id="#{data.value}radio" type="radio" name="data.value" value="#{data.value}" onclick="operationOptions_changeCategory(this)"></input>
+			<h:outputText value="#{data.value}"></h:outputText>
+		</span>
+	</c:forEach>
+	
+	<ui:repeat value="#{radioComponent.radioList}" var="data">
+        <li>
+        	<input id="#{data.value}radio" type="radio" name="data.value" value="#{data.value}" ></input>
+        	<h:outputText value="#{data.value}"></h:outputText>
+        </li>
+    </ui:repeat>
+    
+    <h:outputLink onclick="openDialog()">link</h:outputLink>
+	<script type="text/javascript">
+	   	function operationOptions_changeCategory(obj) {
+	   		window.alert("dothis");		
+	   		//$(".operation").hide();
+			//$("#" + obj.value).show();
+		}
+	   	
+		function openDialog() {
+			
+			//window.alert("==123==");
+			var url = "#{application.contextPath}";
+			window.alert("test");		
+			
+			var Feature = 'dialogWidth:850px;dialogHeight:600px;status:0;help:0;';
+			//var result = window.showModalDialog((url, window, Feature);
+
+			
+			
+		}
+   	</script>
+	
+</h:body>
+	
+   	
+</html>
