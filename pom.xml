@@ -14,34 +14,46 @@
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
-			
+
 			<properties>
 				<override-web-xml>src/main/jetty/override-mojarra-web.xml</override-web-xml>
 			</properties>
-			<!--  plugin 示意 -->
-			<!--  maven-war-plugin : --> 
-			<!--  處理 war 檔案包裝，包括檔案過濾、web.xml 指定、其他資源載入等 --> 
-			<!--  maven-compiler-plugin --> 
-			<!--  java 編譯相關參數，設定編譯用參數，顯示提示等 --> 
-			<!--  maven-resource-plugin --> 
-			<!--  將設定檔案移動至指定位置 -->
-			
+			<!-- plugin 示意 -->
+			<!-- maven-war-plugin : -->
+			<!-- 處理 war 檔案包裝，包括檔案過濾、web.xml 指定、其他資源載入等 -->
+			<!-- maven-compiler-plugin -->
+			<!-- java 編譯相關參數，設定編譯用參數，顯示提示等 -->
+			<!-- maven-resource-plugin -->
+			<!-- 將設定檔案移動至指定位置 -->
+
 			<!-- 將使用的jar檔做設定 -->
 			<dependencies>
+				<dependency>
+					<groupId>commons-dbcp</groupId>
+					<artifactId>commons-dbcp</artifactId>
+					<version>1.4</version>
+				</dependency>
+
+				<dependency>
+					<groupId>commons-codec</groupId>
+					<artifactId>commons-codec</artifactId>
+					<version>1.9</version>
+				</dependency>
+
 				<dependency>
 					<groupId>com.sun.faces</groupId>
 					<artifactId>jsf-api</artifactId>
 					<version>${mojarra.version}</version>
 					<scope>compile</scope>
 				</dependency>
-				
+
 				<dependency>
 					<groupId>com.sun.faces</groupId>
 					<artifactId>jsf-impl</artifactId>
 					<version>${mojarra.version}</version>
 					<scope>compile</scope>
 				</dependency>
-				
+
 				<dependency>
 					<groupId>org.primefaces</groupId>
 					<artifactId>primefaces</artifactId>
@@ -66,10 +78,34 @@
 					<version>2.1</version>
 				</dependency>
 
+<!-- 				<dependency>
+					<groupId>commons-codec</groupId>
+					<artifactId>commons-codec</artifactId>
+					<version>1.10</version>
+				</dependency> -->
+				
+				<dependency>
+					<groupId>commons-logging </groupId>
+					<artifactId>commons-logging </artifactId>
+					<version>1.2</version>
+				</dependency>
+				
+				<dependency>
+				    <groupId>org.apache.poi</groupId>
+				    <artifactId>poi</artifactId>
+				    <version>3.8</version>
+				</dependency>
+				
+				<dependency>
+				    <groupId>org.apache.poi</groupId>
+				    <artifactId>poi-ooxml</artifactId>
+				    <version>3.9</version>
+				</dependency>
+    
 				<dependency>
 					<groupId>junit</groupId>
 					<artifactId>junit</artifactId>
-					<version>3.8.1</version>
+					<version>4.12</version>
 					<scope>test</scope>
 				</dependency>
 
@@ -78,15 +114,16 @@
 					<artifactId>jstl</artifactId>
 					<version>1.2</version>
 				</dependency>
-				
+
 				<dependency>
 					<groupId>org.apache.geronimo.specs</groupId>
 					<artifactId>geronimo-servlet_3.0_spec</artifactId>
 					<version>1.0</version>
 					<scope>provided</scope>
 				</dependency>
+				
 			</dependencies>
-			
+
 		</profile>
 		<profile>
 			<id>myfaces</id>
@@ -117,7 +154,7 @@
 					</releases>
 				</repository>
 			</repositories>
-			
+
 			<properties>
 				<override-web-xml>src/main/jetty/override-myfaces-web.xml</override-web-xml>
 			</properties>
@@ -133,10 +170,11 @@
 		</dependency>
 
 		<dependency>
-			<groupId>jstl</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.190</version>
 		</dependency>
+
 		<!-- OpenWebBeans -->
 		<dependency>
 			<groupId>org.apache.openwebbeans</groupId>
@@ -186,6 +224,9 @@
 			<artifactId>geronimo-atinject_1.0_spec</artifactId>
 			<version>1.0</version>
 		</dependency>
+
+
+
 	</dependencies>
 
 
@@ -228,4 +269,5 @@
 		<owb.version>1.1.8</owb.version>
 		<jetty.version>8.1.10.v20130312</jetty.version>
 	</properties>
+
 </project>

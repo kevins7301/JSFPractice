@@ -88,4 +88,24 @@
 		<extension>svg#fontawesomeregular</extension>
 		<mime-type>image/svg+xml</mime-type>
 	</mime-mapping>
+
+	<servlet>
+		<servlet-name>H2Console</servlet-name>
+		<servlet-class>org.h2.server.web.WebServlet</servlet-class>
+		<init-param>
+			<param-name>-webAllowOthers</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>H2Console</servlet-name>
+		<url-pattern>/console/*</url-pattern>
+	</servlet-mapping>
+	<!-- comment out a JSF tag completely -->
+	<context-param>
+		<param-name>facelets.SKIP_COMMENTS</param-name>
+	    <param-value>true</param-value>
+	</context-param>
+
 </web-app>

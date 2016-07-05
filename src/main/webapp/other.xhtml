@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<!-- 結婚登記Dialog 個人TAB 配偶 -->
+	<h:head>
+	</h:head>
+
+
+
+	<h:body>
+		<h:form id="myFormId">
+			<p:growl id="msg" showDetail="true"/>
+			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+				<h:outputText value="鎖tab and 連動  : " /> 
+				<p:selectBooleanCheckbox id="checkboxOne" value="#{otherTest.value1}" >
+					<p:ajax listener="#{otherTest.changeOtherComponent}" update="myFormId"/>
+				</p:selectBooleanCheckbox>
+			</h:panelGrid>
+			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+				<h:outputText value="鎖欄位 and 連動  : " />
+				<p:selectBooleanCheckbox id="checkbox2" value="#{otherTest.value2}">
+				</p:selectBooleanCheckbox>
+			</h:panelGrid>
+
+			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"  >
+				<h:outputText value="鎖tab and 連動  : " />
+				<p:selectOneRadio id="tabRadioOne" value="#{otherTest.tabRadioOne}" >	
+					<p:ajax update="panelGrid" listener="#{otherTest.changeOtherRadioComponent}" />		
+					<f:selectItem itemLabel="是" itemValue="Y" />
+					<f:selectItem itemLabel="否" itemValue="N" />
+					
+				</p:selectOneRadio>
+			</h:panelGrid>
+			
+			<h:panelGrid id="panelGrid" columns="2" style="margin-bottom:10px" cellpadding="5">
+				<h:outputText value="鎖欄位 and 連動  : " />
+				<p:selectOneRadio id="tabRadioTwo" value="#{otherTest.tabRadioTwo}" >	
+					<f:selectItem itemLabel="是" itemValue="Y" />
+					<f:selectItem itemLabel="否" itemValue="N" />
+				</p:selectOneRadio>
+			</h:panelGrid>
+
+			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5" rendered="#{otherTest.value1}">
+				<h:outputText value="鎖欄位 and 連動  3: " />
+				<p:selectOneRadio id="tabRadioThree" value="#{otherTest.tabRadioThree}" >	
+					<f:selectItem itemLabel="是" itemValue="Y" />
+					<f:selectItem itemLabel="否" itemValue="N" />
+				</p:selectOneRadio>	
+			</h:panelGrid>
+			
+		<p:outputLabel value="testText :  " />
+		<p:inputText disabled="#{otherTest.value1}"  value="#{otherTest.value1}" />
+		
+		<br/>
+		<br/>
+		<br/>
+		<p:commandButton value="TAB is : #{otherTest.activeTabIndex}" actionListener="#{otherTest.test}" />
+		<br/>
+		<br/>
+		<br/>
+		
+		<p:tabView id="tabView" tabClose="true" activeIndex="#{otherTest.activeTabIndex}" dynamic="true" cache="false">
+			
+			<p:tab id ="tab1" title="資料1">
+				<p:fieldset legend="父">
+
+				</p:fieldset>
+			</p:tab>
+			<p:tab id="tab2" title="資料2" onTabChange="#{otherTest.value2}">
+				<p:fieldset legend="母">
+
+				</p:fieldset>
+			</p:tab>
+		</p:tabView>
+		
+		</h:form>
+		
+		<h:form id="formB">
+			<f:ajax render="text">
+		        <h:commandLink value="Click A" action="#{otherTest.setShow('A')}" /><br/>
+		        <h:commandLink value="Click B" action="#{otherTest.setShow('B')}" /><br/>
+		        <h:commandLink value="Click C" action="#{otherTest.setShow('C')}" /><br/>
+		    </f:ajax>
+		
+		    <h:panelGroup id="text">
+		        <h:outputText value="Clicked A" rendered="#{otherTest.show == 'A'}" />
+		        <h:outputText value="Clicked B" rendered="#{otherTest.show == 'B'}" />
+		        <h:outputText value="Clicked C" rendered="#{otherTest.show == 'C'}" />
+		    </h:panelGroup>
+    	</h:form>
+
+	</h:body>
+	
+</ui:composition>

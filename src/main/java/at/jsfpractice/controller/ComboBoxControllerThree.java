@@ -21,9 +21,10 @@ public class ComboBoxControllerThree implements Serializable {
     private Map<String,String> cities;
      
     @PostConstruct
-    public void init() {
+    public void init() 
+    {
         countries  = new HashMap<String, String>();
-        countries.put("USA", "USA");
+        countries.put("美國", "美國");
         countries.put("Germany", "Germany");
         countries.put("Brazil", "Brazil");
          
@@ -31,7 +32,7 @@ public class ComboBoxControllerThree implements Serializable {
         map.put("New York", "New York");
         map.put("San Francisco", "San Francisco");
         map.put("Denver", "Denver");
-        data.put("USA", map);
+        data.put("美國", map);
          
         map = new HashMap<String, String>();
         map.put("Berlin", "Berlin");

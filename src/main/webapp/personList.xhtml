@@ -3,11 +3,14 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 <h:head>
+	<h:outputStylesheet library="css" name="table-style.css"  />
 </h:head>
 <h:body>
-    <h:form>
+	<h:form>
+		<h3 style="margin-top: 0">H - tag</h3>
         <h:dataTable id="persons" value="#{personPage.persons}" var="person">
             <h:column>
                 <f:facet name="header">Person</f:facet>
@@ -17,6 +20,21 @@
             </h:column>
         </h:dataTable>
     </h:form>
+    <br/>
+    <p:separator></p:separator>
+    <br/>
+    <h:form>
+		<h3 style="margin-top: 0">P - tag</h3>
+        <p:dataTable id="persons" value="#{personPage.persons}" var="person" styleClass="order-table"
+   			headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
+            <p:column headerText="Person">
+                <p:link value="#{person.name}" outcome="personDetails">
+                    <f:param name="id" value="#{person.id}"/>
+                </p:link>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+    
 </h:body>
 </html>
 

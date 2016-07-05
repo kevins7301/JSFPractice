@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ris="http://java.sun.com/jsf/composite/ris"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<input id="certificateViewStatus" type="hidden" value="#{rlsc17ManagerBean.certificateViewStatus}"></input>
+	<c:forEach items="#{operationOptionsBean.categoryMap}" var="category">
+		<span id="#{category.value}span">
+			<input id="#{category.value}radio" type="radio" name="category" value="#{category.value}" onclick="operationOptions_changeCategory(this)"></input>
+			<label for="#{category.value}radio">
+				<h:outputText value="#{category.value}"></h:outputText>
+			</label>
+		</span>
+	</c:forEach>
+	
+	<c:forEach items="#{operationOptionsBean.operationMap}" var="operationMap">
+		<div id="#{operationMap.key}" class="operation">
+			<p:fieldset>
+				<table>
+					<c:forEach items="#{operationMap.value}" var="operationList">
+						<tr>
+							<c:forEach items="#{operationList}" var="operationVar">
+								<c:forEach items="#{operationVar}" var="map">
+									<td width="30%">
+										<p:commandLink onclick="openIncludeOperationOptionsDialog('#{map.value}')">  
+											<h:outputText value="#{map.key}"></h:outputText>
+										</p:commandLink>
+									</td>
+								</c:forEach>
+							</c:forEach>
+						</tr>
+					</c:forEach>
+				</table>
+			</p:fieldset>
+		</div>
+	</c:forEach>
+	<h:commandButton id="OperationOptionsrlsc1210_" action="#{rlsc17ManagerBean.rlsc1210}" immediate="true" style="display: none"></h:commandButton>
+	<h:commandButton id="OperationOptionsrlsc1230_" action="#{rlsc17ManagerBean.rlsc1230}" immediate="true" style="display: none"></h:commandButton>
+	<h:commandButton id="OperationOptionsrlsc1310_" action="#{rlsc17ManagerBean.rlsc1310}" immediate="true" style="display: none"></h:commandButton>
+	<h:commandButton id="OperationOptionsrlsc1220_" action="#{rlsc17ManagerBean.rlsc1220}" immediate="true" style="display: none"></h:commandButton>
+	<h:commandButton id="OperationOptionsrlsc12104_" action="#{rlsc17ManagerBean.rlsc12104}" immediate="true" style="display: none"></h:commandButton>
+	<h:commandButton id="OperationOptionsrlsc12304_" action="#{rlsc17ManagerBean.rlsc12304}" immediate="true" style="display: none"></h:commandButton>
+	<h:commandButton id="OperationOptionsrlsc13104_" action="#{rlsc17ManagerBean.rlsc13104}" immediate="true" style="display: none"></h:commandButton>
+	<h:commandButton id="OperationOptionsrlsc12204_" action="#{rlsc17ManagerBean.rlsc12204}" immediate="true" style="display: none"></h:commandButton>
+	
+	<SCRIPT type="text/javascript">
+		$(document).ready(function() {
+			$(".operation").hide();
+			$('input[name="category"]')[0].click();
+			
+			var certificateViewStatus = $("#certificateViewStatus").val();
+			if(certificateViewStatus == "false"){
+				$("#文件核發span").hide();
+			}else{
+				$("#文件核發span").show();
+			}
+			
+		});
+		
+		function operationOptions_changeCategory(obj) {
+			$(".operation").hide();
+			$("#" + obj.value).show();
+		}
+		
+		function openIncludeOperationOptionsDialog(value) {
+			var url = "#{application.contextPath}/faces/pages/tmp/" + value + "?windowId=#{currentWindow.id}";
+			//傳送當事人資料至結婚登記POPUP
+			var param = new Object();
+			param.boj = "0";
+			var result = openModalDialog(url, 3000, 3000, param);
+
+			
+			if (result == null) {
+				return;
+			} else {
+				// 處理回傳值或做後續處理
+				var resultArray = result.split(",");
+				
+				if(resultArray[1] == "4"){
+					if(resultArray[0] == "rlsc1230"){
+						$('input[id*="OperationOptionsrlsc12304_"]')[0].click();
+					}else if(resultArray[0] == "rlsc1310"){
+						$('input[id*="OperationOptionsrlsc13104_"]')[0].click();
+					}else if(resultArray[0] == "rlsc1220"){
+						$('input[id*="OperationOptionsrlsc12204_"]')[0].click();
+					}else if(resultArray[0] == "rlsc1210"){
+						$('input[id*="OperationOptionsrlsc12104_"]')[0].click();
+					}
+				}else{
+					if(resultArray[0] == "rlsc1230"){
+						$('input[id*="OperationOptionsrlsc1230_"]')[0].click();
+					}else if(resultArray[0] == "rlsc1310"){
+						$('input[id*="OperationOptionsrlsc1310_"]')[0].click();
+					}else if(resultArray[0] == "rlsc1220"){
+						$('input[id*="OperationOptionsrlsc1220_"]')[0].click();
+					}else if(resultArray[0] == "rlsc1210"){
+						$('input[id*="OperationOptionsrlsc1210_"]')[0].click();
+					}
+				}
+			}
+			
+		}
+	</SCRIPT>
+</ui:composition>

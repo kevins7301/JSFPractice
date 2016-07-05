@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Pagination Ajax Exception</title>
+    </h:head>
+
+    <h:body>
+        <p:ajaxExceptionHandler update="exceptionDialog"
+                onexception="PF('exceptionDialog').show();" />
+        <p:confirmDialog id="exceptionDialog"
+                header="Exception occured"
+                message="Ajax exception description: #{pfExceptionHandler.message}"
+                widgetVar="exceptionDialog">
+            <p:focus />
+            <p:commandButton value="OK" onclick="PF('exceptionDialog').hide();" />
+        </p:confirmDialog>
+
+        <h:form>
+            <p:commandButton value="throw" actionListener="#{paginationAjaxException.throwRuntimeException()}" />
+
+            <p:dataTable var="data" lazy="true" value="#{paginationAjaxException.exceptionModel()}" rows="2" paginator="true">
+	        	<p:columns var="field" value="#{paginationAjaxException.fields}" columnIndexVar="fieldIdx">
+		        	<f:facet name="header">
+			        	<p:outputLabel value="#{field}"  />
+			        </f:facet>
+			        <p:outputLabel value="${data[fieldIdx]}" />
+        		</p:columns>
+            </p:dataTable>
+
+            <p:commandButton value="redirect" actionListener="#{paginationAjaxException.redirectToEmptyPage()}" />
+
+            <p:dataTable var="data" lazy="true" value="#{paginationAjaxException.redirectModel()}" rows="2" paginator="true">
+	        	<p:columns var="field" value="#{paginationAjaxException.fields}" columnIndexVar="fieldIdx">
+		        	<f:facet name="header">
+			        	<p:outputLabel value="#{field}"  />
+			        </f:facet>
+			        <p:outputLabel value="${data[fieldIdx]}" />
+        		</p:columns>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>

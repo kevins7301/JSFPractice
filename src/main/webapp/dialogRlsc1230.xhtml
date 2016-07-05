@@ -1,0 +1,752 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:p="http://primefaces.org/ui">
+	<!-- 結婚登記Dialog 個人TAB 配偶 -->
+	<p:dialog header="戶籍登記/查詢/文件核發  >> 結婚登記" widgetVar="rlsc1230" modal="true" width="1200" height="1600">
+
+	<p:tabView activeIndex="1" id="marryDiv">
+		<p:tab title="全戶基本資料">
+				<p:fieldset legend="夫">
+					<table>
+						<tr>
+							<th width="20%">
+								<h:outputText value="戶長國民身分證統一編號：" />
+							</th>
+							<td width="30%">
+								<p:inputText value="A123498769" readonly="true" styleClass="readonly-input"/>
+							</td>
+							<th width="15%">
+								<h:outputText value="兼任戶長註記：" />
+							</th>
+							<td width="35%">
+								<p:inputText value="專任" readonly="true" styleClass="readonly-input"/>
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">
+								<h:outputText value="戶長姓名：" />
+							</th>
+							<td colspan="3">
+								<p:inputText value="林永生" style="width:99%;" readonly="true" styleClass="readonly-input"/>
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">
+								<h:outputText value="戶號：" />
+							</th>
+							<td width="30%">
+								<p:inputText value="R1000007" readonly="true" styleClass="readonly-input"/>
+							</td>
+							<th width="15%">
+								<h:outputText value="戶別：" />
+							</th>
+							<td width="35%">
+								<p:inputText value="共同生活戶" readonly="true" styleClass="readonly-input"/>
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">
+								<h:outputText value="行政區劃：" />
+							</th>
+							<td colspan="3">
+								<p:inputText value="台中市" size="8" readonly="true" styleClass="readonly-input"/>
+								<h:outputText value="(省市縣市)" />
+								<p:inputText value="東區" size="8" readonly="true" styleClass="readonly-input"/>
+								<h:outputText value="(鄉鎮市區)" />
+								<p:inputText value="十甲里" size="8" readonly="true" styleClass="readonly-input"/>
+								<h:outputText value="(村里)" />
+								<p:inputText value="6" size="8" readonly="true" styleClass="readonly-input"/>
+								<h:outputText value="鄰" />
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">
+								<h:outputText value="地址：" />
+							</th>
+							<td colspan="3">
+								<p:inputText value="永和路二段59號7樓" size="51" readonly="true" styleClass="readonly-input"/>(街路門牌)
+							</td>
+						</tr>
+					</table>
+				</p:fieldset>
+				
+				<p:fieldset legend="妻">
+					<table>
+						<tr>
+							<th width="20%">
+								<h:outputText value="戶長國民身分證統一編號：" />
+							</th>
+							<td width="30%">
+								<p:inputText value="C224566662" readonly="true" styleClass="readonly-input"/>
+							</td>
+							<th width="15%">
+								<h:outputText value="兼任戶長註記：" />
+							</th>
+							<td width="35%">
+								<p:inputText value="專任" readonly="true" styleClass="readonly-input"/>
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">
+								<h:outputText value="戶長姓名：" />
+							</th>
+							<td colspan="3">
+								<p:inputText value="楊美麗" style="width:99%;" readonly="true" styleClass="readonly-input"/>
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">
+								<h:outputText value="戶號：" />
+							</th>
+							<td width="30%">
+								<p:inputText value="R1000001" readonly="true" styleClass="readonly-input"/>
+							</td>
+							<th width="15%">
+								<h:outputText value="戶別：" />
+							</th>
+							<td width="35%">
+								<p:inputText value="共同生活戶" readonly="true" styleClass="readonly-input"/>
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">
+								<h:outputText value="行政區劃：" />
+							</th>
+							<td colspan="3">
+								<p:inputText value="台中市" size="8" readonly="true" styleClass="readonly-input"/>
+								<h:outputText value="(省市縣市)" />
+								<p:inputText value="中區" size="8" readonly="true" styleClass="readonly-input"/>
+								<h:outputText value="(鄉鎮市區)" />
+								<p:inputText value="中華里" size="8" readonly="true" styleClass="readonly-input"/>
+								<h:outputText value="(村里)" />
+								<p:inputText value="6" size="8" readonly="true" styleClass="readonly-input"/>
+								<h:outputText value="鄰" />
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">
+								<h:outputText value="地址：" />
+							</th>
+							<td colspan="3">
+								<p:inputText value="永和路二段59號7樓" size="51" readonly="true" styleClass="readonly-input"/>(街路門牌)
+							</td>
+						</tr>
+					</table>
+				</p:fieldset>
+			</p:tab>
+				
+			<p:tab title="結婚者資料">
+				<!-- 結婚者夫資料 -->
+				<p:fieldset legend="夫" id="husband">
+					<table>
+						<tr>
+							<th width="20%"><h:outputText value="國民身分證統一編號：" />
+							</th>
+							<td width="30%">
+								<p:inputText id="rlsc1230_num1" value="" size="15" maxlength="10"
+								onkeyup="javascript:changeDisplay4(1)" onblur="setData(this);"/>
+								<h:outputText value=" [ " />
+								<p:inputText value="" size="9" maxlength="8" onblur="setData(this);"/>
+								<h:outputText value=" ] " />
+							</td>
+							<th width="20%">
+								<h:outputText value="出生日期 ：" />
+							</th>
+							<td width="30%">
+								
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">姓：</th>
+							<td colspan="3">
+								<p:inputText style="width:9%;" readonly="true" styleClass="readonly-input"/>
+								<h:outputText value=" 名：" />
+								<p:inputText style="width:83%;" readonly="true" styleClass="readonly-input"/>
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">
+								<h:outputText value="姓名 ：" />
+							</th>
+							<td colspan="3">
+								<p:inputText style="width:93%;" value="" readonly="true" styleClass="readonly-input"/>
+								<p:commandButton image="ui-icon ui-icon-search" type="button" oncomplete="rlsc3100.show()" />
+							</td>
+						</tr>
+						<tr>
+							<th width="20%"><h:outputText value="稱謂 ：" />
+							</th>
+							<td width="30%"><p:inputText value="" />
+							</td>
+							<th width="20%"><h:outputText value="教育程度註記：" /></th>
+							<td width="30%">
+								<h:selectOneMenu value="" style="width:200px" >
+									<f:selectItem itemLabel="無" itemValue="" />
+									<f:selectItem itemLabel="國中畢業" itemValue="國中畢業" />
+									<f:selectItem itemLabel="高中畢業" itemValue="高中畢業" />
+									<f:selectItem itemLabel="大學畢業" itemValue="大學畢業" />
+								</h:selectOneMenu>
+							</td>
+						</tr>
+								
+						<tr>
+							<th width="20%">
+								<h:outputText value="婚前婚姻狀況：" />
+							</th>
+							<td width="30%">
+								<p:inputText value="" readonly="true" styleClass="readonly-input"/>
+							</td>
+							<th width="20%">
+								<h:outputText value="戶籍現況：" />
+							</th>
+							<td width="30%">
+								<p:inputText value="" readonly="true" styleClass="readonly-input"/>
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">
+								<h:outputText value="婚姻狀況：" />
+							</th>
+							<td width="30%">
+								<p:inputText value="" readonly="true" styleClass="readonly-input"/>
+							</td>
+							<th width="20%">
+								<h:outputText value="配偶姓名 ：" />
+							</th>
+							<td width="30%">
+								<p:inputText value="" readonly="true" styleClass="readonly-input"/>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<table id="rlsc1230_Foreign_1" style="display:none;">
+									<tr>
+										<th width="40%"><h:outputText value="(原屬)國籍：" /></th>
+										<td width="60%">
+											<h:panelGroup>
+												<h:selectOneMenu value="" style="width:200px"
+													onchange="handleChangeCountry1(this.value);">
+													<f:selectItem itemLabel="003-中國大陸" itemValue="003" />
+													<f:selectItem itemLabel="007-馬來西亞" itemValue="007" />
+													<f:selectItem itemLabel="021-澳大利亞" itemValue="021" />
+													<f:selectItem itemLabel="ZZZ-其它" itemValue="ZZZ" />
+												</h:selectOneMenu>
+												<p:inputText value="" id="countryCode1" style="display:none"
+													size="3" />
+											</h:panelGroup> 
+											<h:outputScript target="head">
+												function handleChangeCountry1(value){
+												$("input[id$='countryCode1']").toggle(/^(ZZZ)$/.test(value));
+												}
+											</h:outputScript>
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td colspan="2">
+								<table style="display:none;">
+									<tr>
+										<th width="40%"><h:outputText value="法定代理人同意：" />
+										</th>
+										<td width="60%">
+											<h:selectOneRadio value="" style="width:200px">
+												<f:selectItem itemLabel="是" />
+												<f:selectItem itemLabel="否" />
+											</h:selectOneRadio>
+										</td>
+									</tr>
+								</table>
+							</td>
+							
+						</tr>
+					</table>
+					<p:panel id="rlsc1230_view1" style="display:none;margin-top:0.5em;">
+						<table>
+							<tr>
+								<th width="10%" rowspan="5" style="font-weight:bolder;">
+									<h:outputText value="外籍者 " />
+								</th>
+							</tr>
+							<tr>
+								<th width="15%">
+									<h:outputText value="英文姓名：" />
+								</th>
+								<td width="35%">
+									<p:inputText value="" />
+								</td>
+								<th width="15%">
+									<h:outputText value="護照號碼 ：" />
+								</th>
+								<td width="25%">
+									<p:inputText value="" />
+								</td>
+							</tr>
+							<tr>
+								<th width="15%">
+									<h:outputText value="統一證號：" />
+								</th>
+								<td width="25%">
+									<p:inputText value="" />
+								</td>
+								<th width="15%">
+									<h:outputText value="其他證號 ：" />
+								</th>
+								<td width="25%">
+									<p:inputText value="" />
+								</td>
+							</tr>
+							<tr>
+								<th width="15%"><h:outputText value="國外地址：" />
+								</th>
+								<td colspan="3">
+									<p:inputText value="" style="width:98%;"/>
+								</td>
+							</tr>
+						</table>
+					</p:panel>
+				</p:fieldset>
+				
+				<!-- 結婚者妻資料 -->
+				<p:fieldset legend="妻" id="wife">
+					<table>
+						<tr>
+							<th width="20%">
+								<h:outputText value="國民身分證統一編號 ：" />
+							</th>
+							<td width="30%">
+								<p:inputText id="rlsc1230_num2" value="C224566662" 
+								size="15" maxlength="10" onkeyup="javascript:changeDisplay4(2)" 
+								readonly="true" styleClass="readonly-input"/>
+								<h:outputText value=" [ " />
+								<p:inputText value="66000010" size="9" maxlength="8" readonly="true" styleClass="readonly-input"/>
+								<h:outputText value=" ] " />
+							</td>
+							<th width="20%">
+								<h:outputText value="出生日期 ：" />
+							</th>
+							<td width="30%">
+								
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">姓：</th>
+							<td colspan="3">
+								<p:inputText style="width:9%;" readonly="true" value="楊" styleClass="readonly-input"/>
+								<h:outputText value=" 名：" />
+								<p:inputText style="width:83%;" readonly="true" value="美麗" styleClass="readonly-input"/>
+							</td>
+						</tr>
+						<tr>
+							<th width="20%"><h:outputText value="姓名 ：" />
+							</th>
+							<td colspan="3">
+								<p:inputText style="width:93%;" value="楊美麗" readonly="true" styleClass="readonly-input"/>
+								<p:commandButton image="ui-icon ui-icon-search" type="button" 
+								oncomplete="rlsc3100.show()" />
+							</td>
+						</tr>
+						<tr>
+							<th width="20%"><h:outputText value="稱謂 ：" />
+							</th>
+							<td width="30%"><p:inputText value="戶長" readonly="true" styleClass="readonly-input"/>
+							</td>
+							<th width="20%">
+								<h:outputText value="教育程度註記 ：" />
+							</th>
+							<td width="30%">
+								<h:selectOneMenu value="國中畢業" style="width:200px">
+									<f:selectItem itemLabel="無" itemValue="" />
+									<f:selectItem itemLabel="國中畢業" itemValue="國中畢業" />
+									<f:selectItem itemLabel="高中畢業" itemValue="高中畢業" />
+									<f:selectItem itemLabel="大學畢業" itemValue="大學畢業" />
+								</h:selectOneMenu></td>
+						</tr>	
+						<tr>
+							<th width="20%">
+								<h:outputText value="婚前婚姻狀況 ：" />
+							</th>
+							<td width="30%">
+								<p:inputText value="未婚" readonly="true" styleClass="readonly-input"/>
+							</td>
+							<th width="20%">
+								<h:outputText value="戶籍現況：" />
+							</th>
+							<td width="30%">
+								<p:inputText value="現住人口" readonly="true" styleClass="readonly-input"/>
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">
+								<h:outputText value="婚姻狀況 ：" />
+							</th>
+							<td width="30%">
+								<p:inputText value="未婚" readonly="true" id="marryStatus" styleClass="readonly-input"/>
+							</td>
+							<th width="20%">
+								<h:outputText value="配偶姓名：" />
+							</th>
+							<td width="30%">
+								<p:inputText value="" readonly="true" id="spouseName" styleClass="readonly-input"/>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<table id="rlsc1230_Foreign_2" style="display:none;">
+									<tr>
+										<th width="40%"><h:outputText value="(原屬)國籍：" /></th>
+										<td width="60%">
+											<h:panelGroup>
+												<h:selectOneMenu value="" style="width:200px"
+													onchange="handleChangeCountry1(this.value);">
+													<f:selectItem itemLabel="003-中國大陸" itemValue="003" />
+													<f:selectItem itemLabel="007-馬來西亞" itemValue="007" />
+													<f:selectItem itemLabel="021-澳大利亞" itemValue="021" />
+													<f:selectItem itemLabel="ZZZ-其它" itemValue="ZZZ" />
+												</h:selectOneMenu>
+												<p:inputText value="" id="countryCode2" style="display:none"
+													size="3" />
+											</h:panelGroup> 
+											<h:outputScript target="head">
+												function handleChangeCountry1(value){
+												$("input[id$='countryCode2']").toggle(/^(ZZZ)$/.test(value));
+												}
+											</h:outputScript>
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td colspan="2">
+								<table style="display:none;">
+									<tr>
+										<th width="40%"><h:outputText value="法定代理人同意：" />
+										</th>
+										<td width="60%">
+											<h:selectOneRadio value="" style="width:200px">
+												<f:selectItem itemLabel="是" />
+												<f:selectItem itemLabel="否" />
+											</h:selectOneRadio>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+		
+					<p:panel id="rlsc1230_view2" style="display:none;margin-top:0.5em;">
+						<table>
+							<tr>
+								<th width="10%" rowspan="5" style="font-weight:bolder;">
+									<h:outputText value="外籍者 " />
+								</th>
+							</tr>
+							<tr>
+								<th width="15%">
+									<h:outputText value="英文姓名：" />
+								</th>
+								<td width="35%">
+									<p:inputText value="" />
+								</td>
+								<th width="15%">
+									<h:outputText value="護照號碼 ：" />
+								</th>
+								<td width="25%">
+									<p:inputText value="" />
+								</td>
+							</tr>
+							<tr>
+								<th width="15%">
+									<h:outputText value="統一證號：" />
+								</th>
+								<td width="25%">
+									<p:inputText value="" />
+								</td>
+								<th width="15%">
+									<h:outputText value="其他證號 ：" />
+								</th>
+								<td width="25%">
+									<p:inputText value="" />
+								</td>
+							</tr>
+							<tr>
+								<th width="15%"><h:outputText value="國外地址：" />
+								</th>
+								<td colspan="3">
+									<p:inputText value="" style="width:98%;"/>
+								</td>
+							</tr>
+						</table>
+					</p:panel>
+				</p:fieldset>
+				<script type="text/javascript">
+				// 檢核是否為外籍者
+				function changeDisplay4(index){
+					var str = document.getElementById("rlsc1230_num"+index).value;
+					var validateStr = "";
+					if(str.length >=3 ){
+						validateStr = str.substr(2,1);
+					};
+					
+					if( str.substr(0,1) == "$" ) {
+						document.getElementById("rlsc1230_view"+ index).style.display = "block";
+						document.getElementById("rlsc1230_Foreign_"+ index).style.display = "";
+					} else {
+						document.getElementById("rlsc1230_view"+ index).style.display = "none";
+						if( validateStr == "6" || validateStr == "7" || validateStr == "8" || validateStr == "9") {
+							document.getElementById("rlsc1230_Foreign_"+ index).style.display = "";
+						} else {
+							document.getElementById("rlsc1230_Foreign_"+ index).style.display = "none";
+						}
+					}
+					
+				}
+				
+				//帶入結婚者資料-夫
+				function setData(obj){
+					var parentElement = $(obj).parent();
+					var parent = $(parentElement).parent().parent();
+					
+					if( ""!=$(parentElement).children().eq(0).val()){
+// 						if(""!=$(parentElement).children().eq(1).val()){
+							$(parent).children().find('input').eq(1).val('66000020');
+							$(parent).children().find('input').eq(2).val('55');
+							$(parent).children().find('input').eq(3).val('04');
+							$(parent).children().find('input').eq(4).val('01');
+							$(parent).children().find('input').eq(6).val('林');
+							$(parent).children().find('input').eq(7).val('永生');
+							$(parent).children().find('input').eq(8).val('林永生');
+							$(parent).children().find('input').eq(9).val('戶長').attr('readonly',true).addClass('readonly-input');
+							$(parent).children().find('select').eq(0).val('國中畢業');
+							$(parent).children().find('input').eq(10).val('未婚');
+							$(parent).children().find('input').eq(11).val('現住人口');
+							$(parent).children().find('input').eq(12).val('已婚');
+							$(parent).children().find('input').eq(13).val('林美麗');
+							
+							$('input#marryStatus').val('已婚');
+							$('input#spouseName').val('林永生');
+// 						}
+					}
+				}
+				</script>
+			</p:tab>
+			
+			<p:tab title="其他申請資料">
+				<p:fieldset legend="申請資料" id="genericContextForeignMerry">
+					<table>
+						<tr>
+							<th width="20%"><h:outputText value="冠姓方式 ：" />
+							</th>
+							<td width="30%"><h:selectOneRadio value="不冠姓"
+									style="width:300px">
+									<f:selectItem itemLabel="不冠姓" itemValue="不冠姓" />
+									<f:selectItem itemLabel="約定冠夫姓" itemValue="約定冠夫姓" />
+									<f:selectItem itemLabel="約定冠妻姓" itemValue="約定冠妻姓" />
+								</h:selectOneRadio>
+							</td>
+							<th width="20%"><h:outputText value="國外結婚：" />
+							</th>
+							<td width="30%">
+								<h:selectOneRadio
+									value="#{rlsc1230ManagerBean.merry}" onchange="goForeignMerry();"
+									id="genericForeignMerry" style="width:200px">
+									<f:selectItem itemLabel="是" itemValue="#{true}" />
+									<f:selectItem itemLabel="否" itemValue="#{false}" />
+								</h:selectOneRadio> 
+								<p:remoteCommand name="goForeignMerry"
+									actionListener="#{rlsc1230ManagerBean.toogleMerry}"
+									update="@form:genericContextForeignMerry" immediate="true"
+									process="genericForeignMerry" />
+							</td>
+						</tr>
+					</table>
+					<p:panel rendered="#{rlsc1230ManagerBean.merry}">
+						<table>
+							<tr>
+								<th width="20%"><h:outputText value="憑外館通報方式 ：" />
+								</th>
+								<td width="30%">
+									<h:selectOneRadio value="登記">
+										<f:selectItem itemLabel="登記" itemValue="登記" />
+										<f:selectItem itemLabel="註記" itemValue="註記" />
+									</h:selectOneRadio>
+								</td>
+								<th width="20%">
+									<h:outputText value="國外結婚通報日期 ：" />
+								</th>
+								<td width="30%">
+									
+								</td>
+							</tr>
+						</table>
+					</p:panel>
+					<table>
+						<tr>
+							<th width="20%">
+								<h:outputText value="結婚生效日期 ：" />
+							</th>
+							<td width="30%">
+							</td>
+							<th width="20%">
+								<h:outputText value="結婚登記日期：" />
+							</th>
+							<td width="30%">
+								
+							</td>
+		
+						</tr>
+						<tr>
+							<th width="20%">
+								<h:outputText value="結婚地點 ：" />
+							</th>
+							<td colspan="3">
+								<h:selectOneMenu value="" style="width:200px;">
+									<f:selectItem itemLabel="中華民國" itemValue="001" />
+									<f:selectItem itemLabel="中國大陸" itemValue="002" />
+								</h:selectOneMenu>
+							</td>
+		
+						</tr>
+						<tr>
+							<th width="20%"><h:outputText value="證    人(1)：" /></th>
+							<td width="30%"><p:inputText value="" /></td>
+							<th width="20%"><h:outputText value="證    人(2) ：" /></th>
+							<td width="30%"><p:inputText value="" /></td>
+						</tr>
+		
+						<tr>
+							<th width="20%"><h:outputText value="附繳證件 ：" /></th>
+							<td colspan="3">
+								<input type="checkbox" name="certificate" value="1.結婚證書" />1.結婚證書
+								<input type="checkbox" name="certificate" value="2.委託書" />2.委託書
+								<input type="checkbox" name="certificate" value="3.結婚書約" />3.結婚書約
+								<input type="checkbox" name="certificate" onclick="setOtherPaper(this);" value="4.其他" />4.其他
+								<p:inputText readonly="true" styleClass="readonly-input"/>
+							</td>
+						</tr>
+						<tr>
+							<th width="20%"><h:outputText value="須進行罰鍰處理：" /></th>
+							<td colspan="3"><h:selectOneRadio value="" style="width:200px">
+									<f:selectItem itemLabel="是" />
+									<f:selectItem itemLabel="否" />
+								</h:selectOneRadio>
+							</td>
+						</tr>
+					</table>
+				</p:fieldset>
+				<script type="text/javascript">
+					function setOtherPaper(obj){
+						if($(obj).attr('checked')=='checked'){
+							$(obj).next('input').removeAttr('readonly').removeClass('readonly-input');
+						}else{
+							$(obj).next('input').val('').attr('readonly',true).addClass('readonly-input');
+						}
+					}
+				</script>
+			</p:tab>
+			
+			<p:tab title="申請人/受委託人">
+				<span id="merrySpan">
+					<input type="hidden" name="appliOne" id="appliOne" value="false" />
+					<input type="hidden" name="appliTwo" id="appliTwo" value="false" />
+					<input type="hidden" id="basicApplicantAnchor" />
+					<ui:include src="BasicApplicant.xhtml"/>
+				</span>
+				<script type="text/javascript">
+					//$(document).ready(function(){
+						//$('span#merrySpan button[title="重設資料"]').eq(1).trigger('click');
+						//$('span#merrySpan button[title="重設資料"]').eq(2).trigger('click');
+					//});
+				</script>
+			</p:tab>
+			
+			<p:tab title="戶籍記事/罰鍰清單" id="basicNoteId">
+				<input type="text" value="" id="validateButtonEventId_marry" onchange="eventHandle(this);" style="display:none;"/>
+				<input type="text" value="" id="catchCloseEventId_marry" onchange="eventHandle2(this);" style="display:none;"/>
+				<ui:include src="BasicNotes.xhtml"/>
+				<table style="display:none;">
+				<tbody id="hiddenBasicApplicant" class="ui-datatable-data">
+					<tr class="ui-widget-content ui-datatable-even">
+						<td style="padding:0.1em 0.5em;text-align:left;">結婚登記</td>
+						<td style="padding:0.1em 0.5em;text-align:left;">A123498769</td>
+						<td style="padding:0.1em 0.5em;text-align:left;">林永生</td>
+						<td style="padding:0.1em 0.5em;text-align:left;">
+							<textarea style="width:99%;" rows="3">民國100年12月16日與楊美麗結婚。民國100年12月16日申登(戶所代碼)。</textarea>
+						</td>
+						<td style="padding:0.1em 0.5em;"></td>
+					</tr>
+					<tr class="ui-widget-content ui-datatable-odd">
+						<td style="padding:0.1em 0.5em;text-align:left;">結婚登記</td>
+						<td style="padding:0.1em 0.5em;text-align:left;">C224566662</td>
+						<td style="padding:0.1em 0.5em;text-align:left;">楊美麗</td>
+						<td style="padding:0.1em 0.5em;text-align:left;">
+							<textarea style="width:99%;" rows="3">民國100年12月16日與林永生結婚。民國100年12月16日申登(戶所代碼)。</textarea>
+						</td>
+						<td style="padding:0.1em 0.5em;"></td>
+					</tr>
+				</tbody>
+				</table>
+				<table style="display:none;" id="hiddenBodyTable">
+				<tbody id="hiddenBody" class="ui-datatable-data">
+					<tr class="ui-widget-content ui-datatable-even">
+						<td style="padding:0.1em 0.5em;text-align:left;">結婚登記</td>
+						<td style="padding:0.1em 0.5em;text-align:left;">500</td>
+						<td style="padding:0.1em 0.5em;"><p:commandButton value="編輯"/></td>
+					</tr>
+				</tbody>
+				</table>
+				
+				
+				<script type="text/javascript">
+					function validateButtonEvent(){
+								if($('#validateButtonEventId_marry')){
+									$('#validateButtonEventId_marry').val(true).trigger('change');
+								}
+							}
+		
+					<!-- 資料驗證 -->
+					function eventHandle(o){
+						if($(o).attr('value') == 'true') {
+							var $tTable = $(o).next().next().find('table').eq(0);
+							$tTable.find('tbody').remove();
+
+							var $clone = $('tbody#hiddenBasicApplicant').clone();
+							$clone.insertAfter($tTable.find('thead'));
+							
+							focusToNotes();
+						}
+					}
+					
+					<!-- 罰鍰處理 -->
+					function eventHandle2(o){
+						if($(o).attr('value') == 'true') {
+							var $tTable = $(o).next().next().find('table').eq(0);
+							$tTable.find('tbody').remove();
+							
+							var $clone = $('table#hiddenBodyTable tbody#hiddenBody').clone();
+							$clone.insertAfter($tTable.find('thead'));
+							
+							focusToNotes();
+						}
+					}
+					
+					function focusToNotes() {
+						$('div#marryDiv').tabs("option", "selected", 4);
+					}
+			</script>
+			</p:tab>
+	</p:tabView>
+<!-- 	<ui:include src="dialogButton.xhtml"/> -->
+		<p:commandButton value="資料驗證" oncomplete="validateButtonEvent();"/>
+		<p:commandButton value="罰鍰處理" oncomplete="finesHandlingDialog.show();"/>
+		<p:commandButton value="送出" immediate="true" action="#{rlsc1230ManagerBean.marrySubmit}" oncomplete="rlsc1230.hide();" />
+		<p:commandButton value="關閉視窗" immediate="true" onclick="rlsc1230.hide();"></p:commandButton>
+		
+		<p:remoteCommand name="queryBasicNotesData" 
+			action="#{rlsc17ManagerBean.queryBasicNotesData}" >
+		</p:remoteCommand>
+	
+	</p:dialog>
+
+</ui:composition>

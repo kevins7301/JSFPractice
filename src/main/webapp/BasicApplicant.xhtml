@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<!-- include此頁的作業有:結婚登記 -->
+	<!-- 申請人 -->
+	<p:fieldset legend="申請人資料">
+		<table>
+			<tr>
+				<th colspan="2">
+					<h:selectBooleanCheckbox name="applier" value="#{rlsc1230ManagerBean.apply1}" >
+                		<f:ajax event="click" />
+					</h:selectBooleanCheckbox>國民身分證統一編號：
+				</th>
+				<td width="30%">
+					<p:inputText value="C224566662" size="15" readonly="true" 
+						styleClass="readonly-input" maxlength="10" onchange="setApplyData(this);"/>
+					<h:outputText value=" [ " />
+					<p:inputText size="9" maxlength="8" value="66000010" onchange="setApplyData(this);"
+						readonly="true" styleClass="readonly-input"/>
+					<h:outputText value=" ] " />
+				</td>
+				<th width="20%">與當事人之關係：</th>
+				<td width="30%">
+					<p:inputText value="" size="7" />
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2">姓名：</th>
+				<td colspan="3">
+					<p:inputText value="楊美麗" style="width:93%;" readonly="true" styleClass="readonly-input"/>
+					<p:commandButton image="ui-icon ui-icon-search" title="查詢" 
+					onclick='open31Query("#{application.contextPath}/faces/pages/tmp/popupRlsc3100.xhtml");'/>
+				</td>
+			</tr>
+			<tr>
+				<th width="10%" rowspan="2">
+					<p:commandButton value="重設資料" type="button" title="重設資料" onclick="cleanAllInput(this)"/>
+				</th>
+				<th width="10%" rowspan="2">戶籍地址：</th>
+				<td colspan="3">
+					<p:inputText value="台中市" readonly="true" size="8" styleClass="readonly-input"/>
+					<h:outputText value=" (省市縣市) " />
+					<p:inputText value="中區" readonly="true" size="8" styleClass="readonly-input"/>
+					<h:outputText value=" (鄉鎮市區) " />
+					<p:inputText value="中華里" readonly="true" size="8" styleClass="readonly-input"/>
+					<h:outputText value=" (村里) " />
+					<p:inputText value="6" readonly="true" size="4" styleClass="readonly-input"/>
+					<h:outputText value=" 鄰" />					
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<p:inputText value="永和路二段59號7樓" readonly="true" size="51" styleClass="readonly-input"/>
+					<h:outputText value=" (街路門牌) " />
+				</td>
+			</tr>
+		</table>
+		<HR style="margin:0.5em;"/>
+		<table >
+			<tr>
+				<th colspan="2">
+					<h:selectBooleanCheckbox name="applier" value="#{rlsc1230ManagerBean.apply2}" >
+                		<f:ajax event="click" />
+					</h:selectBooleanCheckbox>
+					國民身分證統一編號：
+				</th>
+				<td width="30%">
+					<p:inputText value="A123498769" size="15" readonly="true" 
+						styleClass="readonly-input" maxlength="10" onchange="setApplyData(this);"/>
+					<h:outputText value=" [ " />
+					<p:inputText size="9" maxlength="8" value="66000020" readonly="true" 
+						styleClass="readonly-input" onchange="setApplyData(this);"/>
+					<h:outputText value=" ] " />
+				</td>
+				<th width="20%">與當事人之關係：</th>
+				<td width="30%">
+					<p:inputText value="" size="7" />
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2">姓名：</th>
+				<td colspan="3">
+					<p:inputText value="林永生" style="width:93%;" readonly="true" styleClass="readonly-input"/>
+					<p:commandButton image="ui-icon ui-icon-search" title="查詢" 
+					onclick='open31Query("#{application.contextPath}/faces/pages/tmp/popupRlsc3100.xhtml");'/>
+				</td>
+			</tr>
+			<tr>
+				<th width="10%" rowspan="2">
+					<p:commandButton value="重設資料" type="button" title="重設資料" onclick="cleanAllInput(this)"/>
+				</th>
+				<th width="10%" rowspan="2">戶籍地址：</th>
+				<td colspan="3">
+					<p:inputText value="台中市" readonly="true" size="8" styleClass="readonly-input"/>
+					<h:outputText value=" (省市縣市) " />
+					<p:inputText value="東區" readonly="true" size="8" styleClass="readonly-input"/>
+					<h:outputText value=" (鄉鎮市區) " />
+					<p:inputText value="十甲里" readonly="true" size="8" styleClass="readonly-input"/>
+					<h:outputText value=" (村里) " />
+					<p:inputText value="6" readonly="true" size="4" styleClass="readonly-input"/>
+					<h:outputText value=" 鄰" />					
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<p:inputText value="永和路二段59號7樓" readonly="true" size="51" styleClass="readonly-input"/>
+					<h:outputText value=" (街路門牌) " />
+				</td>
+			</tr>
+		</table>
+	</p:fieldset>
+	<p:fieldset legend="受委託人資料">
+		<table>
+			<tr>
+				<th colspan="2">國民身分證統一編號：
+				</th>
+				<td colspan="3">
+					<p:inputText value="" size="15" maxlength="10" readonly="true" 
+						styleClass="readonly-input"/>
+					<h:outputText value=" [ " />
+					<p:inputText size="9" readonly="true" 
+						styleClass="readonly-input"/>
+					<h:outputText value=" ] " />
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2">姓名：</th>
+				<td colspan="3">
+					<p:inputText value="" style="width:93%;" readonly="true" styleClass="readonly-input"/>
+					<p:commandButton image="ui-icon ui-icon-search" title="查詢" 
+					onclick='open31Query("#{application.contextPath}/faces/pages/tmp/popupRlsc3100.xhtml");'/>
+				</td>
+			</tr>
+			<tr>
+				<th width="10%" rowspan="2">
+					<p:commandButton value="重設資料" type="button" title="重設資料" onclick="cleanAllInput2(this)"/>
+				</th>
+				<th width="10%" rowspan="2">戶籍地址：</th>
+				<td colspan="3">
+					<p:inputText value="" size="8" readonly="true" styleClass="readonly-input"/>
+					<h:outputText value=" (省市縣市) " />
+					<p:inputText value="" size="8" readonly="true" styleClass="readonly-input"/>
+					<h:outputText value=" (鄉鎮市區) " />
+					<p:inputText value="" size="8" readonly="true" styleClass="readonly-input"/>
+					<h:outputText value=" (村里) " />
+					<p:inputText value="" size="4" readonly="true" styleClass="readonly-input"/>
+					<h:outputText value=" 鄰" />					
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<p:inputText value="" size="51" readonly="true" styleClass="readonly-input"/>
+					<h:outputText value=" (街路門牌) " />
+				</td>
+			</tr>
+		</table>
+		<script type="text/javascript">
+			function cleanAllInput(obj){
+				var tableParent = $(obj).parent().parent().parent();
+				var input = $(tableParent).children().find('input');
+				$(input).each(function(index) {
+					 if(index==1){
+					 $(this).removeAttr('readonly').removeClass('readonly-input');
+					 }
+					 else if(index==2){
+					 	$(this).removeAttr('readonly').removeClass('readonly-input');
+					 }
+				     $(this).attr('value','');
+				});
+			}
+			
+			function cleanAllInput2(obj){
+				var tableParent = $(obj).parent().parent().parent();
+				var input = $(tableParent).children().find('input');
+				$(input).each(function(index) {
+				     $(this).attr('value','');
+				});
+			}
+			
+			function setApplyData(obj){
+				var parentElement = $(obj).parent();
+				var parent = $(parentElement).parent().parent();
+<!-- 				var id = $(parentElement).children().eq(0).val(); -->
+<!-- 				var no = $(parentElement).children().eq(1).val(); -->
+				var id = $(parent).children().find('input').eq(1).val();
+				var no = $(parent).children().find('input').eq(2).val();
+				if( ""!=id){
+					if(""!=no){
+						 if(id=='C224566662'){
+						 	$(parent).children().find('input').eq(2).val('66000010');
+						 	$(parent).children().find('input').eq(4).val('楊美麗');
+						 	$(parent).children().find('input').eq(6).val('中區');
+						 	$(parent).children().find('input').eq(7).val('中華里');
+						 }else{
+						 	$(parent).children().find('input').eq(2).val('66000020');
+						 	$(parent).children().find('input').eq(4).val('林永生');
+						 	$(parent).children().find('input').eq(6).val('東區');
+						 	$(parent).children().find('input').eq(7).val('十甲里');
+						 }
+						 	$(parent).children().find('input').eq(3).val('');
+						 	$(parent).children().find('input').eq(5).val('台中市');
+						 	$(parent).children().find('input').eq(8).val('6');
+						 	$(parent).children().find('input').eq(9).val('永和路二段59號7樓');
+					}
+				}
+			}
+			
+		</script>
+	</p:fieldset>
+
+</ui:composition>

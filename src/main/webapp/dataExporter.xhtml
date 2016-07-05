@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>JSFPractice</title>
+</h:head>
+<h:body>
+	<h:form id="growl">
+		<p:dataTable id="tbl" var="car" value="#{poiView.cars}" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+               paginator="true" rows="10" style="margin-bottom:20px">
+               
+			<f:facet name="{Exporters}">
+	            <h:commandLink>
+	                <p:graphicImage name="image/excel.png" width="24"/>
+	                <p:dataExporter type="xls" target="tbl" fileName="allDataXLS" postProcessor="#{poiView.postProcessXLS}"/>
+	            </h:commandLink>
+	        </f:facet>
+        
+			<p:column>
+            <f:facet name="header">
+                <h:outputText value="Year" />
+            </f:facet>
+            <h:outputText value="#{car.year}" />
+	        </p:column>
+	 
+	        <p:column>
+	            <f:facet name="header">
+	                <h:outputText value="Brand"/>
+	            </f:facet>
+	            <h:outputText value="#{car.brand}" />
+	        </p:column>
+	 
+	        <p:column>
+	            <f:facet name="header">
+	                <h:outputText value="Color" />
+	            </f:facet>
+	            <h:outputText value="#{car.color}" />
+	        </p:column>
+	 
+	        <p:column>
+	            <f:facet name="header">
+	                <h:outputText value="Price" />
+	            </f:facet>
+	            <h:outputText value="#{car.price}" />
+	        </p:column>
+		</p:dataTable>
+		
+		Export Page XLS : 
+         <h:commandLink>
+             <p:graphicImage name="image/excel.png" />
+             <p:dataExporter type="xls" postProcessor="#{poiView.postProcessXLS}" pageOnly="true"
+                 target="tbl" fileName="pageXLS" />
+         </h:commandLink>
+<!--          <h:commandLink>
+             <p:graphicImage name="image/pdf.png" />
+             <p:dataExporter type="pdf" target="tbl" fileName="mypdf" />
+         </h:commandLink> -->
+    
+    	
+	<br/>
+	<br/>
+    	產生XLS : <p:commandButton  value="submit" actionListener="#{poiView.exportXLS}"  update="growl" styleClass="ui-priority-primary"/>
+   	<br/>
+	<br/>
+    
+    
+        
+	</h:form>
+
+	
+	
+</h:body>
+</html>

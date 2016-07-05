@@ -6,8 +6,6 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -23,7 +21,7 @@ public class PersonPage {
     private int selectedId;
     private Person selectedPerson;
     
-    private List<HashMap> dataList;
+	private List<HashMap> dataList;
     
     public PersonPage()
     {
@@ -31,37 +29,44 @@ public class PersonPage {
     	
     	for (int i = 0; i < 2; i++)
     	{
-    		HashMap dataMap = new HashMap();
+    		HashMap<String, Object> dataMap = new HashMap<String, Object>();
     		dataMap.put("value", "radio"+i);
     		dataList.add(dataMap);
     	}
     }
     
-    public List<HashMap> getDataList() {
+    public List<HashMap> getDataList() 
+    {
         return dataList;
     }
 
-    public Collection<Person> getPersons() {
+    public Collection<Person> getPersons() 
+    {
         return personRepository.getPersons();
     }
 
-    public void loadPerson() {
+    public void loadPerson() 
+    {
         selectedPerson = personRepository.getPerson(selectedId);
     }
 
-    public Person getSelectedPerson() {
+    public Person getSelectedPerson() 
+    {
         return selectedPerson;
     }
 
-    public void setSelectedId(int selectedId) {
+    public void setSelectedId(int selectedId) 
+    {
         this.selectedId = selectedId;
     }
 
-    public int getSelectedId() {
+    public int getSelectedId() 
+    {
         return selectedId;
     }
 
-    public void setPersonRepository(PersonRepository personRepository) {
+    public void setPersonRepository(PersonRepository personRepository) 
+    {
         this.personRepository = personRepository;
     }
 }

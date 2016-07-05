@@ -3,29 +3,41 @@
         xmlns:f="http://xmlns.jcp.org/jsf/core"
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:c="http://java.sun.com/jsp/jstl/core">
+        xmlns:c="http://java.sun.com/jsp/jstl/core"
+        xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>JSFlive JSF 2.2 - Ajax Delay</title>
+    <title>Ajax Delay</title>
 </h:head>
 <h:body>
 
     <h:outputScript library="javax.faces" name="jsf.js"/>
 
     <h:form >
-        <h:inputText value="#{testBean.product}"
-                onkeyup="jsf.ajax.request(this, event, {render: 'form:result', delay: 500})">
-            <ui:remove>
-                <!-- Does not work with Mojarra 2.2.2, see JAVASERVERFACES-3020-->
-                <f:ajax event="keyup" render="result" delay="300"/>
-            </ui:remove>
+    	<h3 style="margin-top: 0">h-tag</h3>
+        <h:inputText value="#{testBean.product}">
+			 <p:ajax event="keyup" update="result" />
         </h:inputText>
         <br/>
         <h:panelGroup id="result">
-            <ui:repeat value="#{testBean.matchingProducts}" var="p">
-                #{p}<br/>
-            </ui:repeat>
+            result : <br/>
+            #{testBean.product}<br/>
+            
         </h:panelGroup>
+        
+		<br/>
+	   	<p:separator></p:separator>
+	   	<br/>
+        
+        <h3 style="margin-top: 0">p-tag</h3>
+		<h:panelGrid columns="3">
+			<p:outputLabel value="Keyup: " />
+	        <p:inputText id="counter" value="#{testBean.text}">
+	            <p:ajax event="keyup" update="out" listener="#{testBean.handleKeyEvent}" />
+	        </p:inputText>
+	        <p:outputLabel id="out" value="#{testBean.text}" />
+	    </h:panelGrid>
+        
     </h:form>
 
 </h:body>

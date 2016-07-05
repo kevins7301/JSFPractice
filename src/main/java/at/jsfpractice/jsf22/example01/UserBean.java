@@ -12,6 +12,8 @@ import javax.faces.component.UIInput;
 import javax.faces.validator.FacesValidator;
 import javax.faces.view.ViewScoped;
 
+import at.jsfpractice.jsf22.testDB.testDAO;
+
 @ManagedBean (name="userBean", eager = true)
 @SessionScoped
 @FacesValidator("userValidator")
@@ -29,9 +31,6 @@ public class UserBean implements Serializable
 	
 	private String[] arr1 = {"test1", "test2", "test3"};
 	
-	
-	
-
 	public String[] getArr1() {
 		return arr1;
 	}
@@ -131,9 +130,28 @@ public class UserBean implements Serializable
 
 	public String verify() 
 	{
-		System.out.println("toViewStr=="+toViewStr);
+		boolean valid = testDAO.validate(name, password);
+		
+		if (valid) 
+		{
+			System.out.println("valid s-->" + valid);
+			return "welcome?faces-redirect=true";//"Success";
+		} 
+		else 
+		{
+			System.out.println("valid f -->" + valid);
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Incorrect Username and Passowrd",
+							"Please enter correct username and Password"));
+			return "loginValidate?faces-redirect=true";//"Failure";
+		}
+		
+		
+//		System.out.println("toViewStr=="+toViewStr);
 //		"welcom?faces-redirect=true";
-		return toViewStr;
+//		return toViewStr;
 	}
 	
 	
@@ -143,6 +161,6 @@ public class UserBean implements Serializable
 //		session.invalidate();
 //		return "login";
 		
-		return "index?faces-redirect=true";
+		return "loginValidate?faces-redirect=true";
 	}
 }

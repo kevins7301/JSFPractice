@@ -14,7 +14,7 @@
 	<hr />
 	<h:form>
 		<h:panelGroup>
-			<h3>ComboBox</h3>
+			<h3>h-tag</h3>
 			<h:selectOneMenu value="#{comboBoxControllerOne.data}">
 				<f:selectItem itemValue="1" itemLabel="Item one" />
 				<f:selectItem itemValue="2" itemLabel="Item two" />
@@ -27,11 +27,11 @@
 			<p:spacer></p:spacer>
 			<p:spacer></p:spacer>
 
-			<h:commandButton value="選擇" action="result" />
+			<h:commandButton value="選擇" action="comboBoxResult" />
 		</h:panelGroup>
 
 		<h:panelGroup>
-			<h3>ComboBox</h3>
+			<h3>h-tag Listener</h3>
 			<h:selectOneMenu value="#{comboBoxControllerTwo.data}"
 				onchange="submit()"
 				valueChangeListener="#{comboBoxControllerTwo.validarSelect}">
@@ -48,15 +48,14 @@
 		<p:spacer></p:spacer>
 		<p:spacer></p:spacer>
 		<h:panelGroup>
-			<h3>ComboBox</h3>
+			<h3>p-tag</h3>
 			<h:panelGrid columns="2" cellpadding="5">
 				<p:outputLabel for="country" value="Country: " />
 				<p:selectOneMenu id="country"
-					value="#{comboBoxControlhmjjlerThree.country}" 
+					value="#{comboBoxControllerThree.country}" 
 					onchange="submit()" style="width:250px">
 					<p:ajax listener="#{comboBoxControllerThree.onCountryChange}" update="city" render="@form" />
-					<f:selectItem itemLabel="Select Country" itemValue=""
-						noSelectionOption="true" />
+					<f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
 					<f:selectItems value="#{comboBoxControllerThree.countries}" />
 				</p:selectOneMenu>
 			</h:panelGrid>
@@ -65,13 +64,15 @@
 				rendered="#{comboBoxControllerThree.country == 'Germany'}">
 				<p:outputLabel for="city" value="City: " />
 				<p:selectOneMenu id="city" value="#{comboBoxControllerThree.city}"
-					style="width:250px">
-					<f:selectItem itemLabel="Select City" itemValue=""
-						noSelectionOption="true" />
+					style="width:250px" onchange="submit()">
+					<f:selectItem itemLabel="Select City" itemValue="" noSelectionOption="true" />
 					<f:selectItems value="#{comboBoxControllerThree.cities}" />
 				</p:selectOneMenu>
 			</h:panelGroup>
-			<br>Result select #{comboBoxControllerThree.country}</br>
+			
+			
+			<br>Result select country : #{comboBoxControllerThree.country} </br>
+			<br>Result select city : #{comboBoxControllerThree.city} </br>
 			<p:separator />
 		</h:panelGroup>
 	</h:form>

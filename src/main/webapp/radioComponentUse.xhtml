@@ -6,11 +6,13 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:jl="http://xmlns.jcp.org/jsf/composite/jsflive"
       xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 </h:head>
 <h:body>
 
+	<h3 style="margin-top: 0">c:forEach</h3>
     <c:forEach items="#{radioComponent.radioList}" var="data">
 		<span id="#{data.value}span"> <!-- $("#文件核發span") hide or show -->
 			<input id="#{data.value}radio" type="radio" name="data.value" value="#{data.value}" onclick="operationOptions_changeCategory(this)"></input>
@@ -18,6 +20,12 @@
 		</span>
 	</c:forEach>
 	
+	
+    <br/>
+    <p:separator></p:separator>
+    <br/>
+	
+	<h3 style="margin-top: 0">ui:repeat - h tag radio</h3>
 	<ui:repeat value="#{radioComponent.radioList}" var="data">
         <li>
         	<input id="#{data.value}radio" type="radio" name="data.value" value="#{data.value}" ></input>
@@ -25,7 +33,24 @@
         </li>
     </ui:repeat>
     
-    <h:outputLink onclick="openDialog()">link</h:outputLink>
+    <br/>
+    <p:separator></p:separator>
+    <br/>
+	
+	<h3 style="margin-top: 0">c:forEach - p tag OneRadio</h3>
+	<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+		<p:outputLabel value="GAME:" />
+        <p:selectOneRadio id="console" > <!-- value="#{radioView.console}" -->
+        	<c:forEach items="#{radioComponent.radioList}" var="data">
+        		<f:selectItem itemLabel="#{data.value}" itemValue="#{data.value}" />
+        	</c:forEach>
+            <!-- <f:selectItem itemLabel="Xbox360" itemValue="Xbox360" />
+            <f:selectItem itemLabel="PS4" itemValue="PS4" />
+            <f:selectItem itemLabel="PC" itemValue="PC" /> -->
+        </p:selectOneRadio>
+    </h:panelGrid>
+    
+    <!-- <h:outputLink onclick="openDialog()">link</h:outputLink> -->
 	<script type="text/javascript">
 	   	function operationOptions_changeCategory(obj) {
 	   		window.alert("dothis");		

@@ -11,19 +11,20 @@
 	<!-- <h:commandLink rel="stylesheet" type="text/css" href="./WebContent/resources/styles.css" /> -->
 </h:head>
 <h:body>
+
 	<h:form>
 		<h3>請輸入您的帳號</h3>
 		<h:outputText value="#{userBean.errMessage}" />
 			
-				帳號:
-				<h:inputText id="username" value="#{userBean.name}" required="true"
+		帳號:
+		<h:inputText id="username" value="#{userBean.name}" required="true"
 			validator="#{userBean.validateModelNo}"
 			requiredMessage="請輸入帳號(帳號長度為3~10碼)" styleClass="text-input">
 			<f:validateLength minimum="1" maximum="10" />
 		</h:inputText>
 		
-				密碼:
-				<h:inputSecret id="password" value="#{userBean.password}"
+		密碼:
+		<h:inputSecret id="password" value="#{userBean.password}"
 			required="true" validator="#{userBean.validateModelNo}"
 			requiredMessage="請輸入密碼(帳號長度為3~10碼)">
 			<f:validateLength minimum="1" maximum="10" />
@@ -31,8 +32,14 @@
 
 		<h:messages layout="table" style="color:red" />
 		&nbsp;
-		<h:commandButton value="Submit" action="#{userBean.verify}"
+		<h:commandButton id="submit1"  value="Submit" action="#{userBean.verify}"
 			actionListener="#{userBean.verifyListener}" />
+
+
+
+
 	</h:form>
+	
+		
 </h:body>
 </html>

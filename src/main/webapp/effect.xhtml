@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+
+</h:head>
+<h:body>
+	<h:form id="frm">
+
+		<p:panel id="shake" header="shake">
+			<h:outputText value="click" />
+			<p:effect type="shake" event="click" />
+		</p:panel>
+		<br />
+		<p:panel header="Slide">
+			<h:outputText value="doubleclick" />
+			<p:effect type="slide" event="click" />
+			<!-- event="dblclick" -->
+		</p:panel>
+		<br />
+			
+		<p:inputTextarea value="Target slide">
+			<p:effect event="focus" for="inputPanel" type="slide">
+				<f:param name="mode" value="'show'" />
+				<f:param name="direction" value="'up'" />
+			</p:effect>
+			<p:effect event="blur" for="inputPanel" type="slide">
+				<f:param name="mode" value="'hide'" />
+				<f:param name="direction" value="'up'" />
+			</p:effect>
+		</p:inputTextarea>
+
+		<p:outputPanel id="inputPanel" layout="block"
+			style="width: 400px; display: none;">
+			<p:panel header="Panel inside OutputPanel">
+				<h1>effect on output-panel</h1>
+			</p:panel>
+		</p:outputPanel>
+		
+		<br />
+		<!-- 					<h:panelGroup id="imgHostel">
+						test
+					</h:panelGroup>
+					<p:overlayPanel id="imgPanel" for="imgHostel" showEffect="fade"
+						hideEffect="fade" showEvent="mouseover" hideEvent="mousedown"
+						dismissable="true" at="left top" style="background-color:rgba(0,0,0,0.6); width:350px ;height:250px ;">
+						<div style="color: white;">
+							<p style="text-align: center; margin-top: 10px; font-weight: bold;"> test p:overlayPanel</p>
+						</div>
+					</p:overlayPanel> -->
+
+		<p:panel header="fade">
+			<h:panelGroup id="panelGroup">
+						test overlayPanel
+					</h:panelGroup>
+			<p:overlayPanel id="overlayPanel" for="panelGroup" showEffect="fade"
+				showEvent="mouseover" hideEvent="mouseout" at="left top">
+				<div style="color: black">
+					<p>show overlayPanel</p>
+				</div>
+			</p:overlayPanel>
+
+		</p:panel>
+	</h:form>
+</h:body>
+</html>
