@@ -6,9 +6,9 @@ public class Person implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
-    private int id;
-    private String name;
-    private String email;
+    private final int id;
+    private final String name;
+    private final String email;
     
     public Person(int id, String name, String email) 
     {
@@ -29,7 +29,7 @@ public class Person implements Serializable
         return name;
     }
 
-	public void setId(int id) {
+	/*public void setId(int id) {
 		this.id = id;
 	}
 
@@ -39,5 +39,5 @@ public class Person implements Serializable
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
+	}*/
 }

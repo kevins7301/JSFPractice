@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.commons.codec.binary.Base64;
 import org.primefaces.component.datalist.DataList;
 
 public class testDAO 
@@ -27,6 +29,8 @@ public class testDAO
 			ps.setString(1, accuntID);
 			ps.setString(2, passWord);
 
+			System.err.println("validate===");
+			
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) 
@@ -40,102 +44,92 @@ public class testDAO
 			System.out.println("Login error -->" + ex.getMessage());
 			return false;
 		} 
-//		finally 
-//		{
-//			DataBaseConnect.close(con);
-//		}
 		
 		return false;
 	}
 	
-//	public static ArrayList getImageData()
-//	{
-//		
-//		
-//		
-//	}
-	
-	public static void upload(ArrayList<String> dataList/*ArrayList<FileInputStream> dataFinLsit, ArrayList dataLengthList*/)
+	public static void test()
 	{
+		System.err.println("test===");
 		Connection con = null;
 		PreparedStatement ps = null;
 		
-//		for (int i = 0; i < dataList.size(); i++)
-//		{
-//		for (String inputfile : dataList)
-//		{
+		try 
+		{
+			con = DataBaseConnect.getConnection();
+			System.err.println("con=isClosed=="+con.isClosed());
 			
+			ps = con.prepareStatement("SELECT * FROM PERSON");
+			ResultSet rs = ps.executeQuery();
 			
-//			FileInputStream fin = (FileInputStream) dataFinLsit.get(i);
-//			long datalength = (Long) dataLengthList.get(i);
+			ps = con.prepareStatement("INSERT INTO PERSON VALUES(4, 'person4', 'person4@gamil.com');");
+			int count = ps.executeUpdate();
 			
-			
-			
-        		// Reading a Image file from file system
-            
-                // upload database
-//                finList.add(imageInFile);
-//                finLengthList.add(inputfile.length());
-			File file = null;
-			FileInputStream imageInFile = null;
-			try 
+			ps = con.prepareStatement("SELECT * FROM PERSON");
+			rs = ps.executeQuery();
+			while (rs.next()) 
 			{
-				file = new File("D:\\image\\01.jpg");
-				imageInFile = new FileInputStream(file);
+//				HashMap dataMap = new HashMap();
+//				dataMap.put("ID", rs.getInt("ID"));
+//				dataMap.put("IMAGE", rs.getString("IMAGE"));
+				// result found, means valid inputs
 				
-				con = DataBaseConnect.getConnection();
-				con.setAutoCommit(false);
-				PreparedStatement stmt = con.prepareStatement("INSERT INTO IMAGE(ID, NAME, IMAGE) VALUES('?', '?', '?')");
-//				System.err.println("stmt=="+stmt);
-//				stmt.setBinaryStream(1, imageInFile, file.length());
-				stmt.setInt(1, 1);
-				stmt.setString(2, "01.jpg");
-				stmt.setBlob(3, imageInFile);
-				
-//				stmt.executeUpdate(); 
-//				stmt.clearParameters(); 
-				stmt.executeQuery();
-	            con.commit();
-			} 
-			catch (FileNotFoundException e) 
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.err.println("==="+rs.getString("NAME"));
 			}
-			catch (SQLException e) 
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			finally 
-			{
-	            if (imageInFile != null) 
-	            {
-	            	try 
-	            	{
-	            		imageInFile.close();
-						
-//						if (con != null && !con.isClosed()) 
-//						{
-//						    con.close();
-//						}
-					} 
-	            	catch (IOException e) 
-	            	{
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-//	            	catch (SQLException e) 
-//	            	{
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-	            }
-	        }
-//		}
+			
+		} 
+		catch (SQLException ex) 
+		{
+			System.out.println("Login error -->" + ex.getMessage());
+		} 
 	}
 	
-	public static void test()
+	public static ArrayList getDataMap(String[] key, String sqlStr)
+	{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ArrayList dataList = new ArrayList();
+		
+		try 
+		{
+			con = DataBaseConnect.getConnection();
+			ps = con.prepareStatement(sqlStr);
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) 
+			{
+				HashMap dataMap = new HashMap();
+				
+				System.err.println("==NAME=="+rs.getBigDecimal("NAME"));
+				for (String keyStr : key)
+				{
+					
+					System.err.println("==keyStr=="+keyStr);
+					if (rs.getBigDecimal(keyStr) != null)
+					{
+						dataMap.put(keyStr, rs.getBigDecimal(keyStr));
+					}
+					else 
+					{
+						dataMap.put(keyStr, rs.getString(keyStr));
+					}
+				}
+				// result found, means valid inputs
+				
+				dataList.add(dataMap);
+			}
+			
+			return dataList;
+		} 
+		catch (SQLException ex) 
+		{
+			System.out.println("Login error -->" + ex.getMessage());
+			return null;
+		} 
+		
+	}
+	
+	public static boolean insertData(String sqlStr)
 	{
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -143,24 +137,31 @@ public class testDAO
 		try 
 		{
 			con = DataBaseConnect.getConnection();
-			ps = con.prepareStatement("SELECT * FROM IMAGE");
-			ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) 
-			{
-				HashMap dataMap = new HashMap();
-				dataMap.put("ID", rs.getInt("ID"));
-				dataMap.put("IMAGE", rs.getString("IMAGE"));
-				// result found, means valid inputs
-				
-				System.err.println("==="+rs.getString("IMAGE"));
-			}
+			
+			ps = con.prepareStatement(sqlStr);
+			int count = ps.executeUpdate();
+			
+			
+			System.err.println("==count="+count);
+//			while (rs.next()) 
+//			{
+//				System.err.println("==="+rs.getString("NAME"));
+//			}
+			
+			return true;
+			
 		} 
 		catch (SQLException ex) 
 		{
 			System.out.println("Login error -->" + ex.getMessage());
+			return false;
 		} 
+		
+		
+		
+		
 	}
+	
 	
 	
 	public static ArrayList getPersonData()
@@ -174,7 +175,7 @@ public class testDAO
 			con = DataBaseConnect.getConnection();
 			ps = con.prepareStatement("SELECT * FROM PERSON");
 			ResultSet rs = ps.executeQuery();
-
+			
 			while (rs.next()) 
 			{
 				HashMap dataMap = new HashMap();
@@ -196,13 +197,24 @@ public class testDAO
 	}
 	
 	
-	
+    /**
+     * Encodes the byte array into base64 string
+     *
+     * @param imageByteArray - byte array
+     * @return String a {@link java.lang.String}
+     */
+    public static String encodeImage(byte[] imageByteArray) {
+    	
+//    	Base64.en
+    	
+        return Base64.encodeBase64URLSafeString(imageByteArray);
+    }
 
 	public static void main(String[] args) 
 	{
 		// TODO Auto-generated method stub
 		testDAO test = new testDAO();
-
+		test.test();
 		// test.disConnect();
 	}
 }

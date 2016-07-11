@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
@@ -39,7 +40,7 @@ import org.primefaces.component.datatable.DataTable;
 
 
 @ManagedBean(name="poiView")
-@ViewScoped
+@SessionScoped
 public class PoiView implements Serializable {
 
 	
@@ -173,10 +174,10 @@ public class PoiView implements Serializable {
     	                    car.getCarStructSize()  //last column  (0-based)
     	        			));
     				
-    				Cell cell = (Cell) new CellRangeAddress(1, getCars().size(), car.getCarStructSize(), car.getCarStructSize());
-    				cell.setCellValue("test ");
-    				
-    				System.err.println("getNumMergedRegions=="+sheet.getNumMergedRegions());
+//    				Cell cell = (Cell) new CellRangeAddress(1, getCars().size(), car.getCarStructSize(), car.getCarStructSize());
+//    				cell.setCellValue("test ");
+//    				
+//    				System.err.println("getNumMergedRegions=="+sheet.getNumMergedRegions());
     				
     				
         		}
@@ -306,9 +307,6 @@ public class PoiView implements Serializable {
 		sheet.autoSizeColumn(2);
 		sheet.autoSizeColumn(3);
 		
-       
-
-        
 		// sourcecode 
 //		HSSFWorkbook wb = (HSSFWorkbook) document;
 //      wb.setSheetName(0, "postProcessXLS");

@@ -15,6 +15,8 @@ public class RadioComponent
 {
     private List<HashMap> radioList;
     
+    private String renderStr;
+    
     public RadioComponent()
     {
     	radioList = new ArrayList();
@@ -26,7 +28,15 @@ public class RadioComponent
     	}
     }
     
-    public List<HashMap> getRadioList() {
+    public String getRenderStr() {
+		return renderStr;
+	}
+
+	public void setRenderStr(String renderStr) {
+		this.renderStr = renderStr;
+	}
+
+	public List<HashMap> getRadioList() {
 		return radioList;
 	}
 

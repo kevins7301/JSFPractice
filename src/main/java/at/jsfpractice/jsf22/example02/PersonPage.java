@@ -2,8 +2,8 @@ package at.jsfpractice.jsf22.example02;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import java.util.ArrayList;
@@ -11,12 +11,13 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-@ManagedBean
-@RequestScoped
 @Named
+@ManagedBean
 @ViewScoped
+
 public class PersonPage {
-    @ManagedProperty("#{personRepository}")
+//    @Inject
+	@ManagedProperty("#{personRepository}")
     private PersonRepository personRepository;
     private int selectedId;
     private Person selectedPerson;
@@ -33,6 +34,9 @@ public class PersonPage {
     		dataMap.put("value", "radio"+i);
     		dataList.add(dataMap);
     	}
+    	
+    	personRepository = new PersonRepository();
+    	personRepository.init();
     }
     
     public List<HashMap> getDataList() 
@@ -42,6 +46,7 @@ public class PersonPage {
 
     public Collection<Person> getPersons() 
     {
+    	System.err.println("personRepository=="+ (personRepository == null));
         return personRepository.getPersons();
     }
 
@@ -68,5 +73,10 @@ public class PersonPage {
     public void setPersonRepository(PersonRepository personRepository) 
     {
         this.personRepository = personRepository;
+    }
+    
+    public void test()
+    {
+    	System.err.println("getPersons====");
     }
 }

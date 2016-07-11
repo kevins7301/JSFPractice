@@ -13,12 +13,12 @@
 <h:body>
 	<h:form id="growl">
 		<p:dataTable id="tbl" var="car" value="#{poiView.cars}" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-               paginator="true" rows="10" style="margin-bottom:20px">
+               paginator="true" rows="10" style="margin-bottom:20px" paginatorPosition="bottom">
                
 			<f:facet name="{Exporters}">
 	            <h:commandLink>
 	                <p:graphicImage name="image/excel.png" width="24"/>
-	                <p:dataExporter type="xls" target="tbl" fileName="allDataXLS" postProcessor="#{poiView.postProcessXLS}"/>
+	                <p:dataExporter type="xls" target="tbl" fileName="allDataXLS" postProcessor="#{poiView.postProcessXLS}" ajax="false"/>
 	            </h:commandLink>
 	        </f:facet>
         
@@ -47,7 +47,8 @@
 	            <f:facet name="header">
 	                <h:outputText value="Price" />
 	            </f:facet>
-	            <h:outputText value="#{car.price}" />
+	            <h:outputText value="#{car.price}" >
+	            </h:outputText>
 	        </p:column>
 		</p:dataTable>
 		

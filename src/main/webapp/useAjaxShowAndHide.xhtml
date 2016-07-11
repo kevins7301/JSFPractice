@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+
+</h:head>
+<h:body>
+<h:form id = "form">	
+	<p:selectOneRadio id="tabRadioOne" value="#{useAjaxShowAndHide.tabRadioOne}" >
+		<p:ajax update="form3" render="text" listener="#{useAjaxShowAndHide.changeOtherRadioComponent}" />
+		<c:forEach items="#{useAjaxShowAndHide.radioList}" var="data" >
+			<f:selectItem itemLabel="#{data.value}" itemValue="#{data.value}" />
+		</c:forEach>
+	</p:selectOneRadio>
+</h:form>	
+
+<h:form id = "form3">
+	<h:panelGroup id="text"  >
+		<p:fieldset legend="資料1" rendered="#{useAjaxShowAndHide.show == 'radio0'}">
+			
+		</p:fieldset>
+		
+		<p:fieldset legend="資料2" rendered="#{useAjaxShowAndHide.show == 'radio1'}">
+		
+		</p:fieldset>
+		
+		<p:fieldset legend="資料3" rendered="#{useAjaxShowAndHide.show == 'radio2'}">
+		
+		</p:fieldset>
+		
+		<p:fieldset legend="資料4" rendered="#{useAjaxShowAndHide.show == 'radio3'}">
+		
+		</p:fieldset>
+	</h:panelGroup>
+	</h:form>
+</h:body>
+</html>

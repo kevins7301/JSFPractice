@@ -3,30 +3,29 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 	<!-- 結婚登記Dialog 個人TAB 配偶 -->
 	<h:head>
 	</h:head>
 
-
-
 	<h:body>
-		<h:form id="myFormId">
+		<h:form id="myOtherFormId">
 			<p:growl id="msg" showDetail="true"/>
 			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-				<h:outputText value="鎖tab and 連動  : " /> 
+				<h:outputText value="測試 checkbox 1: " /> 
 				<p:selectBooleanCheckbox id="checkboxOne" value="#{otherTest.value1}" >
-					<p:ajax listener="#{otherTest.changeOtherComponent}" update="myFormId"/>
+					<p:ajax listener="#{otherTest.changeOtherComponent}" update="myOtherFormId"/>
 				</p:selectBooleanCheckbox>
 			</h:panelGrid>
 			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-				<h:outputText value="鎖欄位 and 連動  : " />
+				<h:outputText value="測試 checkbox 2: " />
 				<p:selectBooleanCheckbox id="checkbox2" value="#{otherTest.value2}">
 				</p:selectBooleanCheckbox>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"  >
-				<h:outputText value="鎖tab and 連動  : " />
+				<h:outputText value="測試 combobox 1 : " />
 				<p:selectOneRadio id="tabRadioOne" value="#{otherTest.tabRadioOne}" >	
 					<p:ajax update="panelGrid" listener="#{otherTest.changeOtherRadioComponent}" />		
 					<f:selectItem itemLabel="是" itemValue="Y" />
@@ -36,7 +35,7 @@
 			</h:panelGrid>
 			
 			<h:panelGrid id="panelGrid" columns="2" style="margin-bottom:10px" cellpadding="5">
-				<h:outputText value="鎖欄位 and 連動  : " />
+				<h:outputText value="測試 combobox 2 : " />
 				<p:selectOneRadio id="tabRadioTwo" value="#{otherTest.tabRadioTwo}" >	
 					<f:selectItem itemLabel="是" itemValue="Y" />
 					<f:selectItem itemLabel="否" itemValue="N" />
@@ -44,7 +43,7 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5" rendered="#{otherTest.value1}">
-				<h:outputText value="鎖欄位 and 連動  3: " />
+				<h:outputText value="測試 combobox 3 : " />
 				<p:selectOneRadio id="tabRadioThree" value="#{otherTest.tabRadioThree}" >	
 					<f:selectItem itemLabel="是" itemValue="Y" />
 					<f:selectItem itemLabel="否" itemValue="N" />
@@ -62,7 +61,7 @@
 		<br/>
 		<br/>
 		
-		<p:tabView id="tabView" tabClose="true" activeIndex="#{otherTest.activeTabIndex}" dynamic="true" cache="false">
+		<p:tabView id="tabView" tabClose="true" activeIndex="#{otherTest.activeTabIndex}" dynamic="true" cache="true">
 			
 			<p:tab id ="tab1" title="資料1">
 				<p:fieldset legend="父">
@@ -91,7 +90,40 @@
 		        <h:outputText value="Clicked C" rendered="#{otherTest.show == 'C'}" />
 		    </h:panelGroup>
     	</h:form>
-
+    	
+		<h:form id = "form">	
+			<p:selectOneRadio id="tabRadioOne" value="#{useAjaxShowAndHide.tabRadioOne}" >
+				<p:ajax update="form" render="text" listener="#{useAjaxShowAndHide.changeOtherRadioComponent}" />
+				<c:forEach items="#{useAjaxShowAndHide.radioList}" var="data" >
+					<f:selectItem itemLabel="#{data.value}" itemValue="#{data.value}" />
+				</c:forEach>
+			</p:selectOneRadio>
+			
+			<h:panelGroup id="text"  >
+				<p:fieldset legend="資料1" rendered="#{useAjaxShowAndHide.show == 'radio0'}">
+					
+				</p:fieldset>
+				
+				<p:fieldset legend="資料2" rendered="#{useAjaxShowAndHide.show == 'radio1'}">
+				
+				</p:fieldset>
+				
+				<p:fieldset legend="資料3" rendered="#{useAjaxShowAndHide.show == 'radio2'}">
+				
+				</p:fieldset>
+				
+				<p:fieldset legend="資料4" rendered="#{useAjaxShowAndHide.show == 'radio3'}">
+				
+				</p:fieldset>
+			</h:panelGroup>
+			
+		</h:form>	
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
 	</h:body>
 	
 </ui:composition>

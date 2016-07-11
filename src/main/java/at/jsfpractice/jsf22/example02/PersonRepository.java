@@ -17,42 +17,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-/**
- * @author Michael Kurz
- */
 @ManagedBean
 @ApplicationScoped
 public class PersonRepository implements Serializable 
 {
+	private static final long serialVersionUID = 1L;
+	
 	private Map<Integer, Person> persons = new TreeMap<Integer, Person>();
 	
 	@PostConstruct
-	protected void init() 
+	public void init() 
 	{
-//		testdao = new testDAO();
-    	
-//    	try 
-//    	{
-//    		Connection con = testdao.getCon();
-//			PreparedStatement pstmt = con.prepareStatement("select * from TEST");
-//			ResultSet rs = pstmt.executeQuery();
-//			
-//			while (rs.next())
-//			{
-//				Person test = new Person(rs.getInt("ID"), rs.getString("NAME"), rs.getString("EMAIL"));
-//				System.err.println("getPerson=="+test);
-//			}
-//			
-//		} 
-//    	catch (SQLException e) 
-//    	{
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-		
     	ArrayList personList = testDAO.getPersonData();
-    	
+    	System.err.println("=dothis=" + personList);
     	for (int i = 0; i < personList.size(); i++)
     	{
     		HashMap personDataMap = (HashMap)personList.get(i);

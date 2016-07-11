@@ -1,9 +1,13 @@
 package at.jsfpractice.jsf22.example01;
 
 import java.io.Serializable;
+import java.util.Map;
 
+import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.*;
@@ -11,13 +15,15 @@ import javax.faces.event.ActionEvent;
 import javax.faces.component.UIInput;
 import javax.faces.validator.FacesValidator;
 import javax.faces.view.ViewScoped;
+import javax.servlet.http.HttpSession;
 
 import at.jsfpractice.jsf22.testDB.testDAO;
 
 @ManagedBean (name="userBean", eager = true)
 @SessionScoped
+//@RequestScoped
 @FacesValidator("userValidator")
-@ViewScoped
+
 public class UserBean implements Serializable
 {
 
@@ -130,6 +136,11 @@ public class UserBean implements Serializable
 
 	public String verify() 
 	{
+		 FacesContext facesContext = FacesContext.getCurrentInstance();
+	     Map<String, Object> sessionMap = facesContext.getExternalContext().getSessionMap();
+	     
+	     System.err.println("sessionMapBBBB==" + sessionMap);
+	     
 		boolean valid = testDAO.validate(name, password);
 		
 		if (valid) 
@@ -154,13 +165,18 @@ public class UserBean implements Serializable
 //		return toViewStr;
 	}
 	
-	
-	public String logout() 
+	public void logout() 
 	{
+		 FacesContext facesContext = FacesContext.getCurrentInstance();
+	     Map<String, Object> sessionMap = facesContext.getExternalContext().getSessionMap();
+	     
+	     System.err.println("sessionMapAAA==" + sessionMap);
+	        
+	        
 //		HttpSession session = SessionUtils.getSession();
 //		session.invalidate();
 //		return "login";
-		
-		return "loginValidate?faces-redirect=true";
+
+//		return "loginValidate?faces-redirect=true";
 	}
 }

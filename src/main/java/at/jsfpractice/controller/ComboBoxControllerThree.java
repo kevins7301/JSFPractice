@@ -79,15 +79,18 @@ public class ComboBoxControllerThree implements Serializable {
     }
  
     public void onCountryChange() {
+    	System.err.println("do onCountryChange");
         if(country !=null && !country.equals(""))
             cities = data.get(country);
         else
             cities = new HashMap<String, String>();
+        
+//        return country;
     }
     
 	public void validarSelect(ValueChangeEvent valueChangeEvent) {
 	    // Add event code here...
-		
+		System.err.println("do validarSelect");
 		if(country !=null && !country.equals(""))
             cities = data.get(country);
         else

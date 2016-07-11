@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head>
+	
+	</h:head>
+	<h:body>
+		<h:form>
+		<p:growl id="messages" showDetail="true"/>
+			<!-- MenuItem need form tag -->
+			<h:outputStylesheet name="css/style.css" />
+			<p:stack id="test" icon="resources/image/stack.png" expanded="true">
+				<p:menuitem value="Home" icon="resources/image/home.png" url="#" />
+				<p:menuitem value="Music" icon="resources/image/music.png" url="#" />
+				<p:menuitem value="Video" icon="resources/image/video.png" url="#" />
+				<p:menuitem value="Email" icon="resources/image/email.png" url="#" />
+				<p:menuitem value="Portfolio" icon="resources/image/portfolio.png" url="#" />
+			</p:stack>
+			<p:draggable for="test"></p:draggable>
+		
+		    <p:contextMenu>
+		        <p:menuitem value="Save" actionListener="#{menuView.save}" update="messages" icon="resources/image/ui-icon-disk"/>
+		        <p:menuitem value="Update" actionListener="#{menuView.update}" update="messages" icon="resources/image/ui-icon-arrowrefresh-1-w"/>
+		        <p:menuitem value="Delete" actionListener="#{menuView.delete}" ajax="false" icon="resources/image/ui-icon-close"/>
+		        <p:menuitem value="Homepage" url="http://www.primefaces.org" icon="ui-icon-extlink"/>
+		    </p:contextMenu>
+		</h:form>
+	</h:body>
+</html>

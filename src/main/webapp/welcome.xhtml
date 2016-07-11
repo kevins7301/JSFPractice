@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
@@ -10,22 +11,32 @@
 
 </h:head>
 <h:body>
-<style>
-    #formdiv {
-        margin: 0 auto;
-    }
+	<style>
+#formdiv {
+	margin: 0 auto;
+}
 </style>
 	<f:view>
-		<div id="formdiv">    
+		<div id="formdiv">
+
+			<h:outputText
+				value="#{userBean.name}"
+				style="font-weight:bold;color:red" />
+			<h:outputText value="#{userBean.password}" />
+			您好！
+			<h3>歡迎使用 JavaServer Faces！</h3>
+
+			<h:form id="frm">
+
 			
-				<h:outputText value="#{userBean.name}" style="font-weight:bold;color:red" />
-				<h:outputText value="#{userBean.password}" />您好！  
-		        <h3>歡迎使用 JavaServer Faces！</h3>
-		       
-		        <h:form id="frm">
-		        <h:commandLink action="#{userBean.logout}" value="Logout"> </h:commandLink>
-		     </h:form>
-	     </div>
+				<h:commandButton id="submit1"  value="Submit" action="#{userBean.logout}" >
+					<f:param name="username" value="#{userBean.name}"/>		
+					<f:param name="password" value="#{userBean.password}"/>
+				</h:commandButton>
+				<h:commandLink action="#{userBean.logout}" value="Logout">
+				</h:commandLink>
+			</h:form>
+		</div>
 	</f:view>
 </h:body>
 </html>

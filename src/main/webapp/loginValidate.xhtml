@@ -29,11 +29,14 @@
 			requiredMessage="請輸入密碼(帳號長度為3~10碼)">
 			<f:validateLength minimum="1" maximum="10" />
 		</h:inputSecret>
-
+				
 		<h:messages layout="table" style="color:red" />
 		&nbsp;
 		<h:commandButton id="submit1"  value="Submit" action="#{userBean.verify}"
-			actionListener="#{userBean.verifyListener}" />
+			actionListener="#{userBean.verifyListener}" >
+			<f:viewParam name="username" value="#{userBean.name}"/>		
+			<f:viewParam name="password" value="#{userBean.password}"/>
+			</h:commandButton>
 
 
 

@@ -51,11 +51,14 @@ public class TestBean implements Serializable {
     public String getText() {
         return text;
     }
+    
     public void setText(String text) {
         this.text = text;
     }
      
     public void handleKeyEvent() {
+    	
+    	System.err.println("text=="+text);
         text = text.toUpperCase();
     }
 }

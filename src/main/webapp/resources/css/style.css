@@ -65,3 +65,31 @@
 .red{
 	color:red;	
 }
+
+
+.ui-stack>img {
+   position: relative;
+   cursor: pointer;
+   padding-top: 35px;
+   width: 200px;
+   height: 200px
+   z-index: 2;
+}
+
+.ui-datepicker-inline
+{
+	width:300px
+}
+
+
+.col {
+top: 0; bottom: 0; 
+}
+
+.scroll-x { 
+overflow-x: auto; 
+}
+
+.scroll-y { 
+overflow-y: auto; 
+}

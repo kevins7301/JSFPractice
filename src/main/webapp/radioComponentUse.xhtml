@@ -12,11 +12,11 @@
 </h:head>
 <h:body>
 
-	<h3 style="margin-top: 0">c:forEach</h3>
-    <c:forEach items="#{radioComponent.radioList}" var="data">
+    <c:forEach items="#{radioComponent.radioList}" var="data" varStatus="v">
 		<span id="#{data.value}span"> <!-- $("#文件核發span") hide or show -->
-			<input id="#{data.value}radio" type="radio" name="data.value" value="#{data.value}" onclick="operationOptions_changeCategory(this)"></input>
-			<h:outputText value="#{data.value}"></h:outputText>
+			<input id="#{data.value}radio" type="radio" name="data.value" value="#{data.value}" /><!-- onclick="operationOptions_changeCategory(this)" -->
+			<h:outputText value="#{data.value}"></h:outputText>		
+			#{v.last	?	'':','} 
 		</span>
 	</c:forEach>
 	
@@ -25,7 +25,6 @@
     <p:separator></p:separator>
     <br/>
 	
-	<h3 style="margin-top: 0">ui:repeat - h tag radio</h3>
 	<ui:repeat value="#{radioComponent.radioList}" var="data">
         <li>
         	<input id="#{data.value}radio" type="radio" name="data.value" value="#{data.value}" ></input>
@@ -37,7 +36,6 @@
     <p:separator></p:separator>
     <br/>
 	
-	<h3 style="margin-top: 0">c:forEach - p tag OneRadio</h3>
 	<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 		<p:outputLabel value="GAME:" />
         <p:selectOneRadio id="console" > <!-- value="#{radioView.console}" -->
@@ -60,7 +58,6 @@
 	   	
 		function openDialog() {
 			
-			//window.alert("==123==");
 			var url = "#{application.contextPath}";
 			window.alert("test");		
 			

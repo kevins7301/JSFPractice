@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<style>
+.ui-datepicker-inline
+{
+	width:350px
+}
+</style>
+</h:head>
+<h:body>
+	<h:form>
+	    <p:growl id="msgs" showDetail="true" />
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel for="inline" value="Inline:" />
+				<h:outputStylesheet library="default" name="css/style.css" />
+				<p:calendar id="inline" value="#{calendarView.calendarOne}" mode="inline" />
+				 
+				<p:outputLabel for="popup" value="Popup:" styleClass="red"/>
+				<p:calendar id="popup" value="#{calendarView.calendarTwo}" />
+				        	
+				<p:outputLabel for="mask" value="Mask:" styleClass="red"/>
+				<p:calendar id="mask" value="#{calendarView.calendarThree}" pattern="yyyy/MM/dd" mask="true" />
+			</h:panelGrid>
+	
+		<p:commandButton value="Submit" update="msgs" actionListener="#{calendarView.click}" icon="ui-icon-check" />
+ 
+	</h:form>  
+	
+		
+</h:body>
+</html>
