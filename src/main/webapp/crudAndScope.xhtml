@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+</h:head>
+<h:body>
+	<h:form>
+		<h:dataTable value="#{crudAndScopeBean.dataList}" var="data" styleClass="order-table" 
+			headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
+			<h:column>
+				<f:facet name="header">Order No</f:facet>
+				<h:outputText value="#{data.orderNo}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Product Name</f:facet>
+				<h:inputText value="#{data.productName}" size="20" rendered="#{data.editable}" />
+				<h:outputText value="#{data.productName}" rendered="#{not data.editable}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Price</f:facet>
+				<h:inputText value="#{data.price}" size="10" rendered="#{data.editable}" />
+				<h:outputText value="#{data.price}" rendered="#{not data.editable}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Quantity</f:facet>
+				<h:inputText value="#{data.quantity}" size="5" rendered="#{data.editable}" />
+				<h:outputText value="#{data.quantity}" rendered="#{not data.editable}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Edit</f:facet>
+				<h:commandLink value="Edit" action="#{crudAndScopeBean.editAction(data)}" rendered="#{not data.editable}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Delete</f:facet>
+				<h:commandLink value="Delete" action="#{crudAndScopeBean.deleteAction(data)}" rendered="#{not data.editable}" />
+			</h:column>
+			
+		</h:dataTable>
+
+		<h:commandButton value="Save Changes" action="#{crudAndScopeBean.saveEditAction}" />
+	</h:form>
+	
+	<h:panelGroup >
+        <h3>Add Product</h3>
+        <h:form>
+			<p>ProductName : <h:inputText value="#{crudAndScopeBean.item.productName}" /></p>
+           	<p>Price       : <h:inputText value="#{crudAndScopeBean.item.price}" /></p>
+           	<p>Quantity    : <h:inputText value="#{crudAndScopeBean.item.quantity}" /></p>
+		
+		<p>
+			<h:commandButton value="add" action="#{crudAndScopeBean.add}" />
+			<h:commandButton value="reset" action="#{crudAndScopeBean.resetAdd}" />
+		</p>
+        </h:form>
+    </h:panelGroup>
+    
+</h:body>
+</html>

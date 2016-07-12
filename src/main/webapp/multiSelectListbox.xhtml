@@ -10,7 +10,6 @@
 
 </h:head>
 <h:body>
-	<h:form>
 		<p:multiSelectListbox value="#{multiSelectView.selection}"
 			effect="slide" header="Categories" showHeaders="true">
 			<f:selectItems value="#{multiSelectView.categories}" />
@@ -21,6 +20,5 @@
 
 		<h:outputText id="out" value="Value: #{multiSelectView.selection}"
 			style="display:block" />
-	</h:form>
 </h:body>
 </html>

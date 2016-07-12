@@ -9,7 +9,7 @@
 </h:head>
 <h:body>
         <h:form id="form">
-            <p:dataTable id="tbl" var="car" value="#{dtLazyView.lazyModel}" paginator="true" rows="10"
+            <p:dataTable id="tbl" var="car" value="#{dtLazyView.lazyModel}" paginator="true" rows="10" paginatorPosition="bottom"
                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {Exporters}"
                          rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{dtLazyView.selectedCar}" lazy="true"
                          >

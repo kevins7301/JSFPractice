@@ -11,13 +11,14 @@
 	
 	</h:head>
 	<h:body>
-		<h:form>
 		<p:growl id="messages" showDetail="true"/>
 			<!-- MenuItem need form tag -->
 			<h:outputStylesheet name="css/style.css" />
 			<p:stack id="test" icon="resources/image/stack.png" expanded="true">
 				<p:menuitem value="Home" icon="resources/image/home.png" url="#" />
-				<p:menuitem value="Music" icon="resources/image/music.png" url="#" />
+				<p:menuitem value="Music" icon="resources/image/music.png" url="#" fragment="">
+				<p:media value="http://www.youtube.com/v/KZnUr8lcqjo" width="420" height="315" player="flash"/>
+				</p:menuitem>
 				<p:menuitem value="Video" icon="resources/image/video.png" url="#" />
 				<p:menuitem value="Email" icon="resources/image/email.png" url="#" />
 				<p:menuitem value="Portfolio" icon="resources/image/portfolio.png" url="#" />
@@ -30,6 +31,5 @@
 		        <p:menuitem value="Delete" actionListener="#{menuView.delete}" ajax="false" icon="resources/image/ui-icon-close"/>
 		        <p:menuitem value="Homepage" url="http://www.primefaces.org" icon="ui-icon-extlink"/>
 		    </p:contextMenu>
-		</h:form>
 	</h:body>
 </html>

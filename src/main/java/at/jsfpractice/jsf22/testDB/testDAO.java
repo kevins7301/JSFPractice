@@ -15,6 +15,7 @@ import java.util.HashMap;
 import org.apache.commons.codec.binary.Base64;
 import org.primefaces.component.datalist.DataList;
 
+
 public class testDAO 
 {
 	public static boolean validate(String accuntID, String passWord) 
@@ -28,14 +29,11 @@ public class testDAO
 			ps = con.prepareStatement("Select ACCOUNTID, PASSWORD from LOGINUSER where ACCOUNTID = ? and PASSWORD = ?");
 			ps.setString(1, accuntID);
 			ps.setString(2, passWord);
-
-			System.err.println("validate===");
 			
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) 
 			{
-				// result found, means valid inputs
 				return true;
 			}
 		} 
@@ -100,12 +98,9 @@ public class testDAO
 			{
 				HashMap dataMap = new HashMap();
 				
-				System.err.println("==NAME=="+rs.getBigDecimal("NAME"));
 				for (String keyStr : key)
 				{
-					
-					System.err.println("==keyStr=="+keyStr);
-					if (rs.getBigDecimal(keyStr) != null)
+					if (DecimalValueConstant.IsDecimal(keyStr))
 					{
 						dataMap.put(keyStr, rs.getBigDecimal(keyStr));
 					}
@@ -114,7 +109,6 @@ public class testDAO
 						dataMap.put(keyStr, rs.getString(keyStr));
 					}
 				}
-				// result found, means valid inputs
 				
 				dataList.add(dataMap);
 			}
@@ -140,14 +134,7 @@ public class testDAO
 			
 			ps = con.prepareStatement(sqlStr);
 			int count = ps.executeUpdate();
-			
-			
-			System.err.println("==count="+count);
-//			while (rs.next()) 
-//			{
-//				System.err.println("==="+rs.getString("NAME"));
-//			}
-			
+
 			return true;
 			
 		} 
@@ -156,12 +143,51 @@ public class testDAO
 			System.out.println("Login error -->" + ex.getMessage());
 			return false;
 		} 
-		
-		
-		
-		
 	}
 	
+	public static boolean updateData(String sqlStr)
+	{
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try 
+		{
+			con = DataBaseConnect.getConnection();
+			
+			ps = con.prepareStatement(sqlStr);
+			int count = ps.executeUpdate();
+
+			return true;
+			
+		} 
+		catch (SQLException ex) 
+		{
+			System.out.println("Login error -->" + ex.getMessage());
+			return false;
+		} 
+	}
+	
+	public static boolean deleteData(String sqlStr)
+	{
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try 
+		{
+			con = DataBaseConnect.getConnection();
+			
+			ps = con.prepareStatement(sqlStr);
+			int count = ps.executeUpdate();
+
+			return true;
+			
+		} 
+		catch (SQLException ex) 
+		{
+			System.out.println("Login error -->" + ex.getMessage());
+			return false;
+		} 
+	}
 	
 	
 	public static ArrayList getPersonData()
